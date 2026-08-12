@@ -64,12 +64,13 @@ function renderMap() {
     btn.style.setProperty('--lvl', lvl.color);
     btn.disabled = !unlocked;
     btn.innerHTML = `
-      <div class="level__icon">${unlocked ? lvl.icon : '🔒'}</div>
+      <div class="level__icon" aria-hidden="true">${unlocked ? lvl.icon : '🔒'}</div>
       <div class="level__body">
         <div class="level__name">${lvl.id}. ${lvl.title}</div>
         <div class="level__sub">${lvl.subtitle}</div>
       </div>
-      <div class="level__stars">${starsRow(stars)}</div>`;
+      <div class="level__stars" role="img" aria-label="${stars} de 3 estrellas">${starsRow(stars)}</div>`;
+    if (!unlocked) btn.setAttribute('aria-label', `Nivel ${lvl.id}, ${lvl.title}: bloqueado`);
     btn.addEventListener('click', () => {
       if (!unlocked) return;
       sfx.tap();
@@ -98,7 +99,10 @@ function startLevel(levelId) {
 }
 
 function renderLives() {
-  $('#lives').innerHTML = [0, 1, 2]
+  const cont = $('#lives');
+  cont.setAttribute('role', 'img');
+  cont.setAttribute('aria-label', `${game.lives} de ${MAX_LIVES} vidas`);
+  cont.innerHTML = [0, 1, 2]
     .map((i) => `<span class="${i < game.lives ? '' : 'off'}">❤️</span>`)
     .join('');
 }
@@ -108,6 +112,7 @@ function renderQuestion() {
   game.answered = false;
 
   $('#play-bar').style.width = `${(game.index / game.queue.length) * 100}%`;
+  $('#play-count').textContent = `${game.index + 1} / ${game.queue.length}`;
   $('#play-score').textContent = game.score;
   renderLives();
 
@@ -123,6 +128,7 @@ function renderQuestion() {
   form.classList.remove('is-on');
   input.className = 'numform__input';
   input.value = '';
+  $('#btn-check').disabled = true;
 
   if (q.type === 'num') {
     form.classList.add('is-on');
@@ -166,6 +172,7 @@ function answer(isCorrect, el) {
   } else {
     $('#numinput').classList.add(isCorrect ? 'is-ok' : 'is-bad');
     $('#numinput').blur();
+    $('#btn-check').disabled = true;
   }
 
   if (isCorrect) {
@@ -220,7 +227,10 @@ function finishLevel(outOfLives) {
 
   if (passed) progress = saveLevelResult(game.level.id, stars, game.score);
 
-  $('#result-stars').innerHTML = starsRow(stars);
+  const cajaEstrellas = $('#result-stars');
+  cajaEstrellas.setAttribute('role', 'img');
+  cajaEstrellas.setAttribute('aria-label', `${stars} de 3 estrellas`);
+  cajaEstrellas.innerHTML = starsRow(stars);
   $('#result-title').textContent = outOfLives
     ? 'Te quedaste sin vidas'
     : passed
@@ -280,6 +290,13 @@ $('#btn-quit').addEventListener('click', () => {
 $('#btn-next').addEventListener('click', () => {
   sfx.tap();
   nextQuestion();
+});
+
+// El teclado numérico del celular no siempre trae tecla de envío:
+// el botón "Responder" se habilita apenas hay algo escrito.
+$('#numinput').addEventListener('input', () => {
+  const value = parseFloat($('#numinput').value.replace(',', '.').trim());
+  $('#btn-check').disabled = game?.answered || Number.isNaN(value);
 });
 
 $('#numform').addEventListener('submit', (e) => {

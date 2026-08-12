@@ -40,9 +40,21 @@ data/levels.js          ⭐ TODO el contenido: niveles y preguntas
 sw.js                   service worker (juego offline)
 manifest.webmanifest    PWA
 scripts/check.mjs       validador del contenido
-scripts/smoke.mjs       prueba de humo en Chromium por CDP
+scripts/smoke.mjs       prueba de humo + auditoría en Chromium por CDP
 scripts/serve.mjs       servidor estático de desarrollo
+scripts/icons.py        genera los PNG del icono (sin dependencias)
 ```
+
+## Diseño y accesibilidad (no romper)
+
+- Paleta **agro** definida como variables en `:root`: verdes de cultivo, tierra y
+  trigo. Todo par texto/fondo tiene que cumplir contraste AA (≥ 4,5:1).
+- El `viewport` **no** lleva `maximum-scale`: bloquear el zoom es una barrera.
+- El `apple-touch-icon` tiene que ser **PNG**: iOS ignora los SVG. Si cambia el
+  icono, correr `python3 scripts/icons.py`.
+- Las preguntas numéricas se responden con el botón **Responder**: el teclado
+  numérico del celular no trae tecla de envío.
+- Estrellas, vidas y niveles bloqueados llevan `aria-label`, porque son emojis.
 
 ## Comandos
 

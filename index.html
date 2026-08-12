@@ -2,26 +2,29 @@
 <html lang="es">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<!-- sin maximum-scale: bloquear el zoom es una barrera de accesibilidad -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Química Quest · Estructura de la materia</title>
 <meta name="description" content="Juego de niveles para repasar estructura y propiedades de la materia en sistemas agropecuarios y ciencias ambientales." />
-<meta name="theme-color" content="#0b1220" />
+<meta name="theme-color" content="#0c1a10" />
+<meta name="color-scheme" content="dark" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="Química Quest" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="manifest" href="manifest.webmanifest" />
 <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
-<link rel="apple-touch-icon" href="icons/icon.svg" />
+<link rel="apple-touch-icon" href="icons/icon-180.png" />
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<div id="app">
+<main id="app">
 
   <!-- ══════════ INICIO ══════════ -->
-  <section class="screen is-active" id="screen-home">
+  <section class="screen is-active" id="screen-home" aria-label="Inicio">
     <div class="home">
-      <div class="home__badge">⚛️</div>
+      <img class="home__badge" src="icons/icon.svg" alt="" width="96" height="96" />
       <h1 class="home__title">Química <span>Quest</span></h1>
       <p class="home__sub">Estructura y propiedades de la materia<br />en sistemas agropecuarios y ciencias ambientales</p>
 
@@ -36,7 +39,7 @@
   </section>
 
   <!-- ══════════ MAPA DE NIVELES ══════════ -->
-  <section class="screen" id="screen-map">
+  <section class="screen" id="screen-map" aria-label="Mapa de niveles">
     <header class="topbar">
       <button class="icon-btn" data-go="home" aria-label="Volver al inicio">←</button>
       <h2>Niveles</h2>
@@ -46,7 +49,7 @@
   </section>
 
   <!-- ══════════ JUEGO ══════════ -->
-  <section class="screen" id="screen-play">
+  <section class="screen" id="screen-play" aria-label="Partida">
     <header class="topbar topbar--play">
       <button class="icon-btn" id="btn-quit" aria-label="Salir del nivel">✕</button>
       <div class="bar bar--slim"><div class="bar__fill" id="play-bar"></div></div>
@@ -56,6 +59,7 @@
     <div class="play">
       <div class="play__meta">
         <span class="chip" id="play-level">Nivel 1</span>
+        <span class="chip" id="play-count">1 / 8</span>
         <span class="chip chip--score">⚡ <b id="play-score">0</b></span>
       </div>
 
@@ -64,9 +68,12 @@
       <div class="options" id="options"></div>
 
       <form class="numform" id="numform" autocomplete="off">
-        <input class="numform__input" id="numinput" type="text" inputmode="decimal"
-               placeholder="Tu respuesta" aria-label="Respuesta numérica" />
-        <span class="numform__unit" id="numunit"></span>
+        <div class="numform__row">
+          <input class="numform__input" id="numinput" type="text" inputmode="decimal"
+                 enterkeyhint="send" placeholder="Tu respuesta" aria-label="Respuesta numérica" />
+          <span class="numform__unit" id="numunit"></span>
+        </div>
+        <button class="btn btn--primary" id="btn-check" type="submit" disabled>Responder</button>
       </form>
     </div>
 
@@ -78,7 +85,7 @@
   </section>
 
   <!-- ══════════ RESULTADO ══════════ -->
-  <section class="screen" id="screen-result">
+  <section class="screen" id="screen-result" aria-label="Resultado del nivel">
     <div class="result">
       <div class="result__stars" id="result-stars"></div>
       <h2 class="result__title" id="result-title"></h2>
@@ -96,7 +103,7 @@
     </div>
   </section>
 
-</div>
+</main>
 
 <script type="module" src="js/app.js"></script>
 </body>

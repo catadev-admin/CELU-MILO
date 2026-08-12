@@ -30,7 +30,11 @@ function tone(freq, start, dur, type = 'sine', gain = 0.14) {
 }
 
 function buzz(pattern) {
-  if (navigator.vibrate) navigator.vibrate(pattern);
+  if (!navigator.vibrate) return;
+  // El navegador descarta la vibración —y llena la consola de advertencias—
+  // mientras no haya habido un toque real del usuario en la página.
+  if (navigator.userActivation && !navigator.userActivation.hasBeenActive) return;
+  navigator.vibrate(pattern);
 }
 
 export const sfx = {

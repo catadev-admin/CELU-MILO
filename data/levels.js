@@ -20,7 +20,7 @@ export const LEVELS = [
     title: 'Los primeros átomos',
     subtitle: 'Teoría atomista y Dalton',
     icon: '🏺',
-    color: '#a16207',
+    color: '#a1662f',
     questions: [
       {
         type: 'mc',
@@ -103,7 +103,7 @@ export const LEVELS = [
     title: 'Thomson',
     subtitle: 'La naturaleza eléctrica de la materia',
     icon: '⚡',
-    color: '#7c3aed',
+    color: '#c9a227',
     questions: [
       {
         type: 'mc',
@@ -191,7 +191,7 @@ export const LEVELS = [
     title: 'Rutherford',
     subtitle: 'El descubrimiento del núcleo',
     icon: '🎯',
-    color: '#dc2626',
+    color: '#b4541e',
     questions: [
       {
         type: 'mc',
@@ -281,7 +281,7 @@ export const LEVELS = [
     title: 'Partículas',
     subtitle: 'Protón, neutrón y electrón',
     icon: '⚛️',
-    color: '#3b82f6',
+    color: '#7bc043',
     questions: [
       {
         type: 'mc',
@@ -358,7 +358,7 @@ export const LEVELS = [
     title: 'Bohr',
     subtitle: 'Cuantos, fotones y órbitas',
     icon: '🌈',
-    color: '#f59e0b',
+    color: '#e0b13a',
     questions: [
       {
         type: 'mc',
@@ -453,7 +453,7 @@ export const LEVELS = [
     title: 'Mecano-cuántico',
     subtitle: 'De Broglie, Heisenberg y Schrödinger',
     icon: '🌀',
-    color: '#0891b2',
+    color: '#4fa3a5',
     questions: [
       {
         type: 'mc',
@@ -541,7 +541,7 @@ export const LEVELS = [
     title: 'Números cuánticos',
     subtitle: 'n, l, mₗ y mₛ',
     icon: '🔢',
-    color: '#2563eb',
+    color: '#5b8c5a',
     questions: [
       {
         type: 'mc',
@@ -627,7 +627,7 @@ export const LEVELS = [
     title: 'Configuración e⁻',
     subtitle: 'Aufbau, Moeller, Pauli y Hund',
     icon: '📐',
-    color: '#ea580c',
+    color: '#d98324',
     questions: [
       {
         type: 'mc',
@@ -733,7 +733,7 @@ export const LEVELS = [
     title: 'Diagrama de orbitales',
     subtitle: 'Casillas y los cuatro números',
     icon: '🗂️',
-    color: '#db2777',
+    color: '#8a6f9e',
     questions: [
       {
         type: 'mc',
@@ -807,7 +807,7 @@ export const LEVELS = [
     title: 'Capa de valencia',
     subtitle: 'Del electrón a la tabla periódica',
     icon: '🧭',
-    color: '#14b8a6',
+    color: '#3f8f6f',
     questions: [
       {
         type: 'mc',
@@ -891,7 +891,7 @@ export const LEVELS = [
     title: 'Z, A e iones',
     subtitle: 'Identidad, masa y carga',
     icon: '🔬',
-    color: '#6366f1',
+    color: '#6d8f3f',
     questions: [
       {
         type: 'mc',
@@ -976,7 +976,7 @@ export const LEVELS = [
     title: 'Isótopos',
     subtitle: 'Isótopos, isóbaros e isótonos',
     icon: '🧬',
-    color: '#8b5cf6',
+    color: '#c2703d',
     questions: [
       {
         type: 'mc',
@@ -1071,7 +1071,7 @@ export const LEVELS = [
     title: 'Masa promedio',
     subtitle: 'Masa atómica y abundancia',
     icon: '⚖️',
-    color: '#16a34a',
+    color: '#9ec13c',
     questions: [
       {
         type: 'mc',
@@ -1146,7 +1146,7 @@ export const LEVELS = [
     title: 'Radiactividad',
     subtitle: 'Emisiones y penetración',
     icon: '☢️',
-    color: '#b91c1c',
+    color: '#b0453a',
     questions: [
       {
         type: 'mc',
@@ -1234,7 +1234,7 @@ export const LEVELS = [
     title: 'Agro y ambiente',
     subtitle: 'Aplicaciones en campo, alimentos y ambiente',
     icon: '🌱',
-    color: '#15803d',
+    color: '#2f7d4f',
     questions: [
       {
         type: 'mc',
@@ -1371,7 +1371,7 @@ export const LEVELS = [
     title: 'TP · Partículas',
     subtitle: 'Práctica: contar y representar átomos',
     icon: '🧮',
-    color: '#0284c7',
+    color: '#4a90a4',
     questions: [
       {
         type: 'num',
@@ -1451,7 +1451,7 @@ export const LEVELS = [
     title: 'TP · Isótopos',
     subtitle: 'Práctica: clasificar núclidos',
     icon: '🔎',
-    color: '#9333ea',
+    color: '#8f9b2f',
     questions: [
       {
         type: 'mc',
@@ -1556,7 +1556,7 @@ export const LEVELS = [
     title: 'TP · Problemas',
     subtitle: 'Práctica: casos de aplicación',
     icon: '📋',
-    color: '#be123c',
+    color: '#a6553f',
     questions: [
       {
         type: 'mc',

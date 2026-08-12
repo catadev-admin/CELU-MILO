@@ -1,6 +1,6 @@
 // Service worker: cachea el juego para poder jugar sin conexión.
 // Subí el número de CACHE cada vez que cambien los archivos del juego.
-const CACHE = 'quimica-quest-v2';
+const CACHE = 'quimica-quest-v4';
 
 const ASSETS = [
   '.',
@@ -13,6 +13,9 @@ const ASSETS = [
   'data/levels.js',
   'icons/icon.svg',
   'icons/icon-maskable.svg',
+  'icons/icon-180.png',
+  'icons/icon-192.png',
+  'icons/icon-512.png',
 ];
 
 self.addEventListener('install', (e) => {

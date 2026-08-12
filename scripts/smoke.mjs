@@ -24,8 +24,10 @@ class CDP {
     this.ws = ws;
     this.id = 0;
     this.pending = new Map();
+    this.eventos = [];
     ws.addEventListener('message', (ev) => {
       const msg = JSON.parse(ev.data);
+      if (msg.method) this.eventos.push(msg);
       const p = this.pending.get(msg.id);
       if (!p) return;
       this.pending.delete(msg.id);
@@ -89,6 +91,7 @@ async function main() {
 
     await cdp.send('Page.enable', {}, S);
     await cdp.send('Runtime.enable', {}, S);
+    await cdp.send('Log.enable', {}, S);
     await cdp.send('Emulation.setDeviceMetricsOverride',
       { width: 390, height: 844, deviceScaleFactor: 2, mobile: true }, S);
 
@@ -130,20 +133,26 @@ async function main() {
     check('arranca con 3 vidas', await evaluate('document.querySelectorAll("#lives .off").length === 0'));
     await shot('3-pregunta');
 
-    const totalQ = await evaluate(
-      `(async()=>{const m=await import('/data/levels.js');return m.LEVELS[0].questions.length})()`, true);
+    // Responde bien todas las preguntas del nivel cuyo índice se le pase.
+    const jugarNivel = async (indice, capturas = false) => {
+      const totalQ = await evaluate(
+        `(async()=>{const m=await import('/data/levels.js');return m.LEVELS[${indice}].questions.length})()`, true);
 
-    for (let i = 0; i < totalQ; i++) {
-      const answered = await evaluate(`(async () => {
+      for (let i = 0; i < totalQ; i++) {
+        const answered = await evaluate(`(async () => {
         const m = await import('/data/levels.js');
-        const qs = m.LEVELS[0].questions;
+        const qs = m.LEVELS[${indice}].questions;
         const shown = document.querySelector('#question').innerHTML;
         const q = qs.find(x => x.q === shown);
         if (!q) return 'pregunta no encontrada';
         if (q.type === 'num') {
+          // Se responde como en el celular: escribir y tocar "Responder".
           const input = document.querySelector('#numinput');
           input.value = String(q.answer);
-          document.querySelector('#numform').requestSubmit();
+          input.dispatchEvent(new Event('input', { bubbles: true }));
+          const boton = document.querySelector('#btn-check');
+          if (boton.disabled) return 'el botón Responder quedó deshabilitado';
+          boton.click();
           return 'num';
         }
         const ok = document.querySelector('.option[data-correct="1"]');
@@ -151,17 +160,20 @@ async function main() {
         ok.click();
         return q.type;
       })()`, true);
-      if (answered !== 'mc' && answered !== 'vf' && answered !== 'num') {
-        check(`responde la pregunta ${i + 1}`, false, answered);
-        break;
+        if (answered !== 'mc' && answered !== 'vf' && answered !== 'num') {
+          check(`responde la pregunta ${i + 1} del nivel ${indice + 1}`, false, answered);
+          break;
+        }
+        await sleep(160);
+        if (capturas && i === 0) await shot('3b-feedback');
+        const fbOn = await evaluate('document.querySelector("#feedback").classList.contains("feedback--ok")');
+        if (!fbOn) { check(`la pregunta ${i + 1} se marcó como correcta`, false); break; }
+        await evaluate('document.querySelector("#btn-next").click()');
+        await sleep(160);
       }
-      await sleep(160);
-      if (i === 0) await shot('3b-feedback');
-      const fbOn = await evaluate('document.querySelector("#feedback").classList.contains("feedback--ok")');
-      if (!fbOn) { check(`la pregunta ${i + 1} se marcó como correcta`, false); break; }
-      await evaluate('document.querySelector("#btn-next").click()');
-      await sleep(160);
-    }
+    };
+
+    await jugarNivel(0, true);
 
     check('no perdió vidas respondiendo bien',
       await evaluate('document.querySelectorAll("#lives .off").length === 0'));
@@ -197,6 +209,96 @@ async function main() {
     // ── sin scroll horizontal ──
     check('no hay scroll horizontal en pantalla de celular',
       await evaluate('document.documentElement.scrollWidth <= window.innerWidth + 1'));
+
+    // ── preguntas de cálculo: se responden con el botón, no con el enter ──
+    // (el teclado numérico del celular no siempre trae tecla de envío)
+    const nivelNum = await evaluate(`(async()=>{
+      const m = await import('/data/levels.js');
+      const s = await import('/js/storage.js');
+      const progreso = {};
+      m.LEVELS.forEach((l) => { progreso[l.id] = { stars: 3, best: 100 }; });
+      localStorage.setItem(s.KEY, JSON.stringify(progreso));
+      // el nivel con más preguntas de cálculo
+      let mejor = -1, max = 0;
+      m.LEVELS.forEach((l, i) => {
+        const n = l.questions.filter((q) => q.type === 'num').length;
+        if (n > max) { max = n; mejor = i; }
+      });
+      return mejor;
+    })()`, true);
+
+    if (nivelNum < 0) {
+      check('hay preguntas numéricas para probar', false);
+    } else {
+      await cdp.send('Page.navigate', { url: base }, S);
+      await sleep(700);
+      await evaluate('document.querySelector("#btn-play").click()');
+      await sleep(400);
+      await evaluate(`document.querySelectorAll('.level')[${nivelNum}].click()`);
+      await sleep(300);
+
+      // Busca una pregunta de cálculo y revisa el botón antes de contestarla.
+      for (let i = 0; i < 12; i++) {
+        if (await evaluate('document.querySelector("#numform").classList.contains("is-on")')) break;
+        await evaluate('document.querySelector(".option[data-correct=\\"1\\"]").click()');
+        await sleep(140);
+        await evaluate('document.querySelector("#btn-next").click()');
+        await sleep(140);
+      }
+      check('el botón Responder se ve en las preguntas de cálculo',
+        await evaluate('document.querySelector("#btn-check").offsetParent !== null'));
+      check('el botón Responder arranca deshabilitado',
+        await evaluate('document.querySelector("#btn-check").disabled'));
+      await evaluate(`(() => {
+        const i = document.querySelector('#numinput');
+        i.value = '7';
+        i.dispatchEvent(new Event('input', { bubbles: true }));
+      })()`);
+      check('el botón Responder se habilita al escribir',
+        await evaluate('!document.querySelector("#btn-check").disabled'));
+      await shot('6-numerica');
+
+      // Vuelve a empezar el nivel y ahora sí lo juega entero.
+      await evaluate('document.querySelector("#btn-quit").click()');
+      await sleep(300);
+      await evaluate(`document.querySelectorAll('.level')[${nivelNum}].click()`);
+      await sleep(300);
+      await jugarNivel(nivelNum);
+      await sleep(300);
+      const estrellasNum = await evaluate('document.querySelectorAll("#result-stars .on").length');
+      check('se puede completar un nivel entero de cálculo', estrellasNum === 3,
+        `${estrellasNum} estrellas`);
+    }
+
+    // ── auditoría: PWA, metadatos y consola limpia ──
+    const meta = await evaluate(`(() => ({
+      lang: document.documentElement.lang,
+      titulo: !!document.title,
+      descripcion: !!document.querySelector('meta[name="description"]'),
+      theme: !!document.querySelector('meta[name="theme-color"]'),
+      manifest: !!document.querySelector('link[rel="manifest"]'),
+      appleIcon: (document.querySelector('link[rel="apple-touch-icon"]') || {}).href || '',
+      zoomBloqueado: (document.querySelector('meta[name="viewport"]').content || '').includes('maximum-scale'),
+      landmark: !!document.querySelector('main'),
+      sinAltFaltante: [...document.images].every((i) => i.alt !== undefined),
+    }))()`);
+    check('el HTML declara idioma, título y descripción',
+      meta.lang === 'es' && meta.titulo && meta.descripcion);
+    check('tiene manifest, theme-color y landmark main',
+      meta.manifest && meta.theme && meta.landmark);
+    check('no bloquea el zoom del navegador', !meta.zoomBloqueado);
+    check('el apple-touch-icon es PNG (iOS no acepta SVG)', meta.appleIcon.endsWith('.png'));
+
+    for (const recurso of ['manifest.webmanifest', 'icons/icon-180.png', 'icons/icon-512.png', 'sw.js']) {
+      const estado = await evaluate(
+        `fetch('${recurso}').then(r => r.status)`, true);
+      check(`se sirve ${recurso}`, estado === 200, `HTTP ${estado}`);
+    }
+
+    const errores = cdp.eventos
+      .filter((e) => e.method === 'Log.entryAdded' && e.params.entry.level === 'error')
+      .map((e) => e.params.entry.text);
+    check('sin errores en la consola', errores.length === 0, errores.join(' | '));
 
     failed = checks.some((c) => !c.ok);
   } catch (err) {
