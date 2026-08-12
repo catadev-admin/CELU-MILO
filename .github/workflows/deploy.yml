@@ -25,9 +25,10 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      # Requiere Pages activado con origen "GitHub Actions"
-      # (Settings → Pages). El token del workflow no puede activarlo solo.
       - uses: actions/configure-pages@v5
+        with:
+          # Activa Pages con origen "GitHub Actions" en el primer deploy.
+          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
