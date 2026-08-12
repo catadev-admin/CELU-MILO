@@ -1,8 +1,20 @@
 # Química Quest
 
 Juego web de niveles (tipo cuestionario) para repasar **estructura y propiedades de la
-materia** en sistemas agropecuarios y ciencias ambientales. El contenido sale de la
-lámina de la materia: 8 secciones → 8 niveles.
+materia** en sistemas agropecuarios y ciencias ambientales.
+
+Fuentes del contenido (18 niveles, 144 preguntas):
+
+- la **lámina** de la materia (las 8 secciones del póster);
+- los **apuntes de cátedra del Tema 1** — de ahí sale el orden de los niveles 1 a 15:
+  teoría atomista → Dalton → Thomson → Rutherford → Bohr → mecano-cuántico →
+  números cuánticos → configuración electrónica → capa de valencia → propiedades →
+  isótopos → aplicaciones;
+- el **Trabajo Práctico de Aula N° 1**, que da los niveles 16 a 18 (ejercitación).
+
+Al agregar contenido nuevo, respetar esa progresión y citar los datos como están en la
+fuente (por ejemplo, el apunte asigna p<sub>x</sub> → m = −1, p<sub>y</sub> → 0,
+p<sub>z</sub> → +1, y sostiene que Z determina las propiedades químicas y A las físicas).
 
 Pensado para usarse **desde el celular**: mobile-first, PWA instalable y jugable sin
 conexión.

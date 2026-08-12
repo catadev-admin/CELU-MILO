@@ -1,8 +1,11 @@
 # ⚛️ Química Quest
 
 Juego de niveles para repasar **estructura y propiedades de la materia** en sistemas
-agropecuarios y ciencias ambientales. 8 niveles, 61 preguntas, hecho para jugar desde
+agropecuarios y ciencias ambientales. 18 niveles, 144 preguntas, hecho para jugar desde
 el celular.
+
+El contenido sale de la lámina de la materia, de los **apuntes de cátedra del Tema 1** y
+del **Trabajo Práctico de Aula N° 1**.
 
 ## Cómo se juega
 
@@ -16,16 +19,29 @@ el celular.
 
 ## Los niveles
 
+Siguen el orden del apunte: primero la historia de los modelos atómicos, después la
+estructura y sus propiedades, y al final las aplicaciones y la ejercitación del TP.
+
 | # | Nivel | Tema |
 |---|-------|------|
-| 1 | El átomo | Partículas subatómicas y núcleo |
-| 2 | Z y A | Número atómico y número másico |
-| 3 | Isótopos | Isótopos, isóbaros e isótonos |
-| 4 | Masa promedio | Masa atómica promedio ponderada |
-| 5 | Números cuánticos | Modelo mecánico-cuántico y orbitales |
-| 6 | Configuración e⁻ | Aufbau, Pauli y Hund |
-| 7 | Radiactividad | Emisiones α, β, γ y penetración |
-| 8 | Agro y ambiente | Aplicaciones en alimentos, suelos y ambiente |
+| 1 | Los primeros átomos | Teoría atomista y postulados de Dalton |
+| 2 | Thomson | Electrización, rayos catódicos, electrón y protón |
+| 3 | Rutherford | Radiactividad, rayos X, lámina de oro, neutrón y positrón |
+| 4 | Partículas | Protón, neutrón y electrón: masas y cargas |
+| 5 | Bohr | Cuantos de Planck, fotones de Einstein, órbitas y Sommerfeld |
+| 6 | Mecano-cuántico | De Broglie, Heisenberg, Schrödinger y el orbital |
+| 7 | Números cuánticos | n, l, mₗ y mₛ; 2n², formas y orientaciones |
+| 8 | Configuración e⁻ | Aufbau, diagrama de Moeller, Pauli y Hund |
+| 9 | Diagrama de orbitales | Casillas, espines y los cuatro números por electrón |
+| 10 | Capa de valencia | Del electrón de valencia al grupo y período |
+| 11 | Z, A e iones | Identidad, masa, aniones, cationes e isoelectrónicos |
+| 12 | Isótopos | Isótopos, isóbaros, isótonos y abundancia |
+| 13 | Masa promedio | Masa atómica promedio ponderada |
+| 14 | Radiactividad | Emisiones α, β, γ, penetración y evaluación de riesgo |
+| 15 | Agro y ambiente | Trazadores, irradiación, alimentos y agua |
+| 16 | TP · Partículas | Práctica: contar partículas y escribir la notación |
+| 17 | TP · Isótopos | Práctica: clasificar núclidos y núclidos de uso agronómico |
+| 18 | TP · Problemas | Práctica: cobalto-60, fertilizante con ¹⁵N y xenón |
 
 ## Instalarlo en el celular
 

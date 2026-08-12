@@ -116,8 +116,10 @@ async function main() {
     // ── mapa ──
     await evaluate('document.querySelector("#btn-play").click()');
     await sleep(400);
+    const esperados = await evaluate(
+      `(async()=>{const m=await import('/data/levels.js');return m.LEVELS.length})()`, true);
     const levels = await evaluate('document.querySelectorAll(".level").length');
-    check('el mapa lista todos los niveles', levels === 8, `${levels} niveles`);
+    check('el mapa lista todos los niveles', levels === esperados, `${levels} de ${esperados}`);
     check('nivel 1 desbloqueado', await evaluate('!document.querySelectorAll(".level")[0].disabled'));
     check('nivel 2 bloqueado al empezar', await evaluate('document.querySelectorAll(".level")[1].disabled'));
     await shot('2-mapa');
@@ -175,8 +177,10 @@ async function main() {
     await shot('4-resultado');
 
     // ── desbloqueo y persistencia ──
-    check('guarda el progreso en localStorage',
-      await evaluate(`!!JSON.parse(localStorage.getItem('quimica-quest:v1') || '{}')['1']`));
+    check('guarda el progreso en localStorage', await evaluate(`(async()=>{
+      const s = await import('/js/storage.js');
+      return !!JSON.parse(localStorage.getItem(s.KEY) || '{}')['1'];
+    })()`, true));
     await evaluate('document.querySelector("#btn-result-main").click()');
     await sleep(300);
     check('avanza al nivel 2',

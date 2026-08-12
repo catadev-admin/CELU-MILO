@@ -1,7 +1,9 @@
 // Progreso persistente en localStorage.
 // Forma: { "1": { stars: 0-3, best: nº }, "2": {...} }
 
-const KEY = 'quimica-quest:v1';
+// v2: al reordenar los niveles con el apunte de cátedra cambió el significado
+// de cada id, así que el progreso viejo se descarta en vez de quedar mezclado.
+export const KEY = 'quimica-quest:v2';
 
 export function loadProgress() {
   try {
