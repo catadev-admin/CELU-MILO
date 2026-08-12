@@ -1,0 +1,27 @@
+name: Verificar
+
+on:
+  push:
+    branches-ignore: []
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validar el contenido del juego
+        run: node scripts/check.mjs
+
+      - name: Prueba de humo en el navegador
+        run: |
+          if [ -x "$(command -v google-chrome)" ]; then
+            CHROME_PATH="$(command -v google-chrome)" node scripts/smoke.mjs
+          else
+            echo "Sin Chrome en el runner: se omite la prueba de humo."
+          fi

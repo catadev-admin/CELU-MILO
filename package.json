@@ -1,0 +1,13 @@
+{
+  "name": "quimica-quest",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Juego de niveles sobre estructura y propiedades de la materia (agro y ambiente).",
+  "scripts": {
+    "serve": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "smoke": "node scripts/smoke.mjs",
+    "test": "node scripts/check.mjs && node scripts/smoke.mjs"
+  }
+}

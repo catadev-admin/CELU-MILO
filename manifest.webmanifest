@@ -1,0 +1,26 @@
+{
+  "name": "Química Quest · Estructura de la materia",
+  "short_name": "Química Quest",
+  "description": "Juego de niveles para repasar estructura y propiedades de la materia en sistemas agropecuarios y ciencias ambientales.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b1220",
+  "theme_color": "#0b1220",
+  "lang": "es",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icons/icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

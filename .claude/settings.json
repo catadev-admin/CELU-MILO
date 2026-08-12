@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node scripts/check.mjs)",
+      "Bash(node scripts/smoke.mjs:*)",
+      "Bash(node scripts/serve.mjs:*)",
+      "Bash(node --run check)",
+      "Bash(node --run smoke)",
+      "Bash(node --run test)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git add:*)"
+    ]
+  }
+}

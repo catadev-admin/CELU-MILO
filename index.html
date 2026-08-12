@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
+<title>Química Quest · Estructura de la materia</title>
+<meta name="description" content="Juego de niveles para repasar estructura y propiedades de la materia en sistemas agropecuarios y ciencias ambientales." />
+<meta name="theme-color" content="#0b1220" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="icons/icon.svg" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div id="app">
+
+  <!-- ══════════ INICIO ══════════ -->
+  <section class="screen is-active" id="screen-home">
+    <div class="home">
+      <div class="home__badge">⚛️</div>
+      <h1 class="home__title">Química <span>Quest</span></h1>
+      <p class="home__sub">Estructura y propiedades de la materia<br />en sistemas agropecuarios y ciencias ambientales</p>
+
+      <div class="home__progress">
+        <div class="home__stars"><span id="home-stars">0</span> / <span id="home-stars-max">0</span> ⭐</div>
+        <div class="bar"><div class="bar__fill" id="home-bar"></div></div>
+      </div>
+
+      <button class="btn btn--primary btn--big" id="btn-play">Jugar</button>
+      <button class="btn btn--ghost" id="btn-reset">Reiniciar progreso</button>
+    </div>
+  </section>
+
+  <!-- ══════════ MAPA DE NIVELES ══════════ -->
+  <section class="screen" id="screen-map">
+    <header class="topbar">
+      <button class="icon-btn" data-go="home" aria-label="Volver al inicio">←</button>
+      <h2>Niveles</h2>
+      <div class="topbar__stars" id="map-stars">0 ⭐</div>
+    </header>
+    <div class="levels" id="levels"></div>
+  </section>
+
+  <!-- ══════════ JUEGO ══════════ -->
+  <section class="screen" id="screen-play">
+    <header class="topbar topbar--play">
+      <button class="icon-btn" id="btn-quit" aria-label="Salir del nivel">✕</button>
+      <div class="bar bar--slim"><div class="bar__fill" id="play-bar"></div></div>
+      <div class="lives" id="lives"></div>
+    </header>
+
+    <div class="play">
+      <div class="play__meta">
+        <span class="chip" id="play-level">Nivel 1</span>
+        <span class="chip chip--score">⚡ <b id="play-score">0</b></span>
+      </div>
+
+      <h2 class="question" id="question"></h2>
+
+      <div class="options" id="options"></div>
+
+      <form class="numform" id="numform" autocomplete="off">
+        <input class="numform__input" id="numinput" type="text" inputmode="decimal"
+               placeholder="Tu respuesta" aria-label="Respuesta numérica" />
+        <span class="numform__unit" id="numunit"></span>
+      </form>
+    </div>
+
+    <div class="feedback" id="feedback" aria-live="polite">
+      <div class="feedback__head" id="feedback-head"></div>
+      <p class="feedback__why" id="feedback-why"></p>
+      <button class="btn btn--primary" id="btn-next">Continuar</button>
+    </div>
+  </section>
+
+  <!-- ══════════ RESULTADO ══════════ -->
+  <section class="screen" id="screen-result">
+    <div class="result">
+      <div class="result__stars" id="result-stars"></div>
+      <h2 class="result__title" id="result-title"></h2>
+      <p class="result__sub" id="result-sub"></p>
+
+      <div class="result__grid">
+        <div class="stat"><b id="result-correct">0</b><span>correctas</span></div>
+        <div class="stat"><b id="result-total">0</b><span>preguntas</span></div>
+        <div class="stat"><b id="result-score">0</b><span>puntos</span></div>
+      </div>
+
+      <button class="btn btn--primary btn--big" id="btn-result-main">Siguiente nivel</button>
+      <button class="btn btn--ghost" id="btn-result-retry">Reintentar</button>
+      <button class="btn btn--ghost" data-go="map">Volver al mapa</button>
+    </div>
+  </section>
+
+</div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
