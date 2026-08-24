@@ -16,8 +16,9 @@ Fuentes del contenido (29 niveles, 240 preguntas), organizadas en dos temas:
   familias → propiedades periódicas → elementos esenciales → alimentos y ambiente;
 - el **Trabajo Práctico de Aula N° 2**, que da los niveles 27 a 29.
 
-Los temas se declaran en `TEMAS` (en `data/levels.js`) y el mapa los muestra agrupados.
-Al sumar un tema nuevo hay que agregar su entrada ahí.
+Las unidades se declaran en `TEMAS` (en `data/levels.js`): cada una es una carpeta del
+mapa, con su rango de ids (`desde`/`hasta`). Al sumar una unidad nueva hay que agregar
+su entrada ahí.
 
 Al agregar contenido nuevo, respetar esa progresión y citar los datos como están en la
 fuente (por ejemplo, el apunte asigna p<sub>x</sub> → m = −1, p<sub>y</sub> → 0,
@@ -38,7 +39,7 @@ conexión.
 ## Estructura
 
 ```
-index.html              todas las pantallas (inicio, mapa, juego, resultado)
+index.html              todas las pantallas (inicio, unidades, niveles, juego, resultado)
 styles.css              estilos, mobile-first, variables CSS
 js/app.js               lógica del juego y navegación entre pantallas
 js/storage.js           progreso en localStorage (estrellas, mejor puntaje, desbloqueo)
@@ -61,7 +62,7 @@ scripts/icons.py        genera los PNG del icono (sin dependencias)
   icono, correr `python3 scripts/icons.py`.
 - Las preguntas numéricas se responden con el botón **Responder**: el teclado
   numérico del celular no trae tecla de envío.
-- Estrellas, vidas y niveles bloqueados llevan `aria-label`, porque son emojis.
+- Estrellas y vidas llevan `aria-label`, porque son emojis.
 
 ## Comandos
 
@@ -79,7 +80,8 @@ Correr al menos `check` después de tocar contenido y `smoke` después de tocar 
 - 3 vidas por nivel; cada error descuenta una.
 - Puntaje: 100 por acierto + 20 extra por cada punto de racha.
 - Estrellas: 100 % → 3, ≥ 80 % → 2, ≥ 60 % → 1. Con menos de 60 % no se pasa.
-- Un nivel se desbloquea cuando el anterior tiene al menos 1 estrella.
+- **No hay niveles bloqueados**: se entra por carpetas (una por unidad) y desde ahí
+  se juega cualquier nivel en el orden que se quiera.
 - Las preguntas y las opciones se mezclan en cada partida.
 
 ## Convenciones

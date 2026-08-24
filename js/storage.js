@@ -37,12 +37,6 @@ export function resetProgress() {
   }
 }
 
-// Un nivel está desbloqueado si es el primero o si el anterior tiene ≥ 1 estrella.
-export function isUnlocked(levelId, progress) {
-  if (levelId === 1) return true;
-  return (progress[levelId - 1]?.stars || 0) > 0;
-}
-
 export function totalStars(progress) {
   return Object.values(progress).reduce((sum, l) => sum + (l.stars || 0), 0);
 }

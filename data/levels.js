@@ -2795,8 +2795,23 @@ export const LEVELS = [
   },
 ];
 
-// Los niveles se agrupan por tema en el mapa.
+// Los niveles se agrupan en unidades: cada una es una carpeta del mapa.
+// `desde` y `hasta` son ids de nivel, inclusive.
 export const TEMAS = [
-  { titulo: 'Tema 1 · Estructura de la materia', desde: 1, hasta: 18 },
-  { titulo: 'Tema 2 · Elementos químicos', desde: 19, hasta: 29 },
+  {
+    titulo: 'Unidad 1',
+    subtitulo: 'Estructura y propiedades de la materia',
+    icon: '⚛️',
+    color: '#7bc043',
+    desde: 1,
+    hasta: 18,
+  },
+  {
+    titulo: 'Unidad 2',
+    subtitulo: 'Elementos químicos y tabla periódica',
+    icon: '🧪',
+    color: '#e0b13a',
+    desde: 19,
+    hasta: 29,
+  },
 ];

@@ -9,13 +9,15 @@ químicos).
 
 ## Cómo se juega
 
-1. **Mapa de niveles**: empezás con el nivel 1 desbloqueado; cada nivel se abre cuando
-   ganás al menos una estrella en el anterior.
+1. **Carpetas por unidad**: entrás a la unidad que estés cursando y elegís cualquiera de
+   sus niveles, en el orden que quieras. No hay niveles bloqueados.
 2. Dentro del nivel tenés **3 vidas** ❤️❤️❤️ y preguntas de opción múltiple,
    verdadero/falso y de cálculo.
 3. Cada respuesta muestra **la explicación**, así que se aprende aunque te equivoques.
 4. Al terminar ganás estrellas: **60 % → ⭐, 80 % → ⭐⭐, 100 % → ⭐⭐⭐**.
-5. El progreso queda guardado en el teléfono.
+5. Las preguntas y las opciones se mezclan en cada partida, así que repetir un nivel
+   nunca es igual.
+6. El progreso queda guardado en el teléfono.
 
 ## Los niveles
 

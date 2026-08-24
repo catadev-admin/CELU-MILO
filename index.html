@@ -38,11 +38,21 @@
     </div>
   </section>
 
-  <!-- ══════════ MAPA DE NIVELES ══════════ -->
-  <section class="screen" id="screen-map" aria-label="Mapa de niveles">
+  <!-- ══════════ UNIDADES (CARPETAS) ══════════ -->
+  <section class="screen" id="screen-units" aria-label="Unidades">
     <header class="topbar">
       <button class="icon-btn" data-go="home" aria-label="Volver al inicio">←</button>
-      <h2>Niveles</h2>
+      <h2>Unidades</h2>
+      <div class="topbar__stars" id="units-stars">0 ⭐</div>
+    </header>
+    <div class="units" id="units"></div>
+  </section>
+
+  <!-- ══════════ NIVELES DE LA UNIDAD ══════════ -->
+  <section class="screen" id="screen-map" aria-label="Niveles de la unidad">
+    <header class="topbar">
+      <button class="icon-btn" data-go="units" aria-label="Volver a las unidades">←</button>
+      <h2 id="map-title">Niveles</h2>
       <div class="topbar__stars" id="map-stars">0 ⭐</div>
     </header>
     <div class="levels" id="levels"></div>

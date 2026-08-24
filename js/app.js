@@ -1,5 +1,5 @@
 import { LEVELS, TEMAS } from '../data/levels.js';
-import { loadProgress, saveLevelResult, resetProgress, isUnlocked, totalStars } from './storage.js';
+import { loadProgress, saveLevelResult, resetProgress, totalStars } from './storage.js';
 import { sfx } from './sfx.js';
 
 const $ = (sel) => document.querySelector(sel);
@@ -49,41 +49,79 @@ function renderHome() {
   $('#home-bar').style.width = `${(stars / MAX_STARS) * 100}%`;
 }
 
-/* ══════════ Mapa de niveles ══════════ */
+/* ══════════ Unidades (carpetas) ══════════ */
+// Los niveles de una unidad
+const nivelesDe = (tema) =>
+  LEVELS.filter((l) => l.id >= tema.desde && l.id <= tema.hasta);
+
+let temaActual = TEMAS[0];
+
+function renderUnits() {
+  const cont = $('#units');
+  cont.innerHTML = '';
+  $('#units-stars').textContent = `${totalStars(progress)} ⭐`;
+
+  TEMAS.forEach((tema) => {
+    const niveles = nivelesDe(tema);
+    const estrellas = niveles.reduce((n, l) => n + (progress[l.id]?.stars || 0), 0);
+    const maximo = niveles.length * 3;
+    const completados = niveles.filter((l) => (progress[l.id]?.stars || 0) > 0).length;
+
+    const btn = document.createElement('button');
+    btn.className = 'unit';
+    btn.style.setProperty('--lvl', tema.color);
+    btn.innerHTML = `
+      <div class="unit__top">
+        <div class="unit__icon" aria-hidden="true">${tema.icon}</div>
+        <div class="unit__body">
+          <div class="unit__name">${tema.titulo}</div>
+          <div class="unit__sub">${tema.subtitulo}</div>
+        </div>
+      </div>
+      <div class="unit__meta">
+        <span>${niveles.length} niveles · ${completados} jugados</span>
+        <span class="unit__stars">${estrellas} / ${maximo} ⭐</span>
+      </div>
+      <div class="bar bar--slim"><div class="bar__fill" style="width:${(estrellas / maximo) * 100}%"></div></div>`;
+    btn.addEventListener('click', () => {
+      sfx.tap();
+      abrirUnidad(tema);
+    });
+    cont.appendChild(btn);
+  });
+}
+
+function abrirUnidad(tema) {
+  temaActual = tema;
+  renderMap();
+  show('map');
+}
+
+/* ══════════ Niveles de la unidad ══════════ */
 function renderMap() {
   const cont = $('#levels');
+  const niveles = nivelesDe(temaActual);
   cont.innerHTML = '';
-  $('#map-stars').textContent = `${totalStars(progress)} ⭐`;
+  $('#map-title').textContent = temaActual.titulo;
+  $('#map-stars').textContent =
+    `${niveles.reduce((n, l) => n + (progress[l.id]?.stars || 0), 0)} ⭐`;
 
-  LEVELS.forEach((lvl) => {
-    const unlocked = isUnlocked(lvl.id, progress);
+  niveles.forEach((lvl) => {
     const stars = progress[lvl.id]?.stars || 0;
     const best = progress[lvl.id]?.best || 0;
 
-    // encabezado al empezar cada tema
-    const tema = TEMAS.find((t) => t.desde === lvl.id);
-    if (tema) {
-      const h = document.createElement('h3');
-      h.className = 'levels__tema';
-      h.textContent = tema.titulo;
-      cont.appendChild(h);
-    }
-
     const btn = document.createElement('button');
-    btn.className = `level${unlocked ? '' : ' level--locked'}`;
+    btn.className = 'level';
     btn.style.setProperty('--lvl', lvl.color);
-    btn.disabled = !unlocked;
     btn.innerHTML = `
-      <div class="level__icon" aria-hidden="true">${unlocked ? lvl.icon : '🔒'}</div>
+      <div class="level__icon" aria-hidden="true">${lvl.icon}</div>
       <div class="level__body">
         <div class="level__name">${lvl.id}. ${lvl.title}</div>
         <div class="level__sub">${lvl.subtitle}</div>
         ${best ? `<div class="level__best">Mejor puntaje: ${best}</div>` : ''}
       </div>
       <div class="level__stars" role="img" aria-label="${stars} de 3 estrellas">${starsRow(stars)}</div>`;
-    if (!unlocked) btn.setAttribute('aria-label', `Nivel ${lvl.id}, ${lvl.title}: bloqueado`);
     btn.addEventListener('click', () => {
-      if (!unlocked) return;
       sfx.tap();
       startLevel(lvl.id);
     });
@@ -249,15 +287,17 @@ function finishLevel(outOfLives) {
       : 'Casi…';
   $('#result-sub').textContent = passed
     ? `Nivel ${game.level.id} · ${game.level.title} superado`
-    : 'Necesitás al menos 60 % de respuestas correctas para pasar de nivel.';
+    : 'Con 60 % de respuestas correctas ya ganás una estrella. ¡Probá de nuevo!';
   $('#result-correct').textContent = game.correct;
   $('#result-total').textContent = total;
   $('#result-score').textContent = game.score;
 
-  const isLast = game.level.id === LEVELS.length;
+  const ultimoDeLaUnidad = game.level.id === temaActual.hasta;
   const mainBtn = $('#btn-result-main');
-  mainBtn.textContent = passed ? (isLast ? 'Volver al mapa' : 'Siguiente nivel') : 'Reintentar';
-  mainBtn.dataset.action = passed ? (isLast ? 'map' : 'next') : 'retry';
+  mainBtn.textContent = passed
+    ? (ultimoDeLaUnidad ? 'Volver a los niveles' : 'Siguiente nivel')
+    : 'Reintentar';
+  mainBtn.dataset.action = passed ? (ultimoDeLaUnidad ? 'map' : 'next') : 'retry';
   $('#btn-result-retry').style.display = passed ? 'block' : 'none';
 
   passed ? sfx.win() : sfx.lose();
@@ -269,8 +309,8 @@ function finishLevel(outOfLives) {
 $('#btn-play').addEventListener('click', () => {
   sfx.unlock();
   sfx.tap();
-  renderMap();
-  show('map');
+  renderUnits();
+  show('units');
 });
 
 $('#btn-reset').addEventListener('click', () => {
@@ -278,7 +318,7 @@ $('#btn-reset').addEventListener('click', () => {
   resetProgress();
   progress = loadProgress();
   renderHome();
-  renderMap();
+  renderUnits();
 });
 
 document.querySelectorAll('[data-go]').forEach((el) => {
@@ -286,6 +326,7 @@ document.querySelectorAll('[data-go]').forEach((el) => {
     sfx.tap();
     const dest = el.dataset.go;
     if (dest === 'map') renderMap();
+    if (dest === 'units') renderUnits();
     if (dest === 'home') renderHome();
     show(dest);
   });

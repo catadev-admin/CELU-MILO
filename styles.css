@@ -166,6 +166,46 @@ sup, sub { font-size: 0.72em; line-height: 0; }
 .topbar__stars { font-size: 15px; color: var(--txt-dim); font-weight: 700; }
 .topbar--play .bar { flex: 1; }
 
+/* ── Unidades (carpetas) ───────────────────────────────── */
+.units { display: grid; gap: 14px; padding-bottom: 20px; }
+
+.unit {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--lvl, var(--accent));
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--txt);
+  font: inherit;
+  cursor: pointer;
+  transition: transform .08s ease;
+}
+.unit:active { transform: scale(.98); }
+.unit__top { display: flex; align-items: center; gap: 14px; }
+.unit__icon {
+  width: 54px; height: 54px;
+  flex: 0 0 54px;
+  display: grid; place-items: center;
+  font-size: 28px;
+  border-radius: 16px;
+  background: var(--bg-soft);
+}
+.unit__body { min-width: 0; }
+.unit__name { font-weight: 800; font-size: 20px; }
+.unit__sub { font-size: 13px; color: var(--txt-dim); }
+.unit__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--txt-dim);
+  margin: 14px 0 8px;
+}
+.unit__stars { color: var(--accent-2); font-weight: 700; white-space: nowrap; }
+
 /* ── Mapa de niveles ───────────────────────────────────── */
 .levels { display: grid; gap: 12px; padding-bottom: 20px; }
 
@@ -186,7 +226,6 @@ sup, sub { font-size: 0.72em; line-height: 0; }
   transition: transform .08s ease;
 }
 .level:active { transform: scale(.98); }
-.level--locked { opacity: .5; cursor: not-allowed; }
 .level__icon {
   width: 46px; height: 46px;
   flex: 0 0 46px;
@@ -195,16 +234,6 @@ sup, sub { font-size: 0.72em; line-height: 0; }
   border-radius: 14px;
   background: var(--bg-soft);
 }
-.levels__tema {
-  margin: 12px 4px 0;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  color: var(--accent-2);
-}
-.levels__tema:first-child { margin-top: 0; }
-
 .level__body { flex: 1; min-width: 0; }
 .level__best { font-size: 12px; color: var(--accent-2); margin-top: 2px; }
 .level__name { font-weight: 800; font-size: 17px; }

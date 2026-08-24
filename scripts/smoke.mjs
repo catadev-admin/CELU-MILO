@@ -116,16 +116,30 @@ async function main() {
     check('título visible', (await evaluate('document.querySelector(".home__title").innerText')).includes('Química'));
     await shot('1-inicio');
 
-    // ── mapa ──
+    // ── unidades (carpetas) ──
     await evaluate('document.querySelector("#btn-play").click()');
     await sleep(400);
-    const esperados = await evaluate(
-      `(async()=>{const m=await import('/data/levels.js');return m.LEVELS.length})()`, true);
+    const temas = await evaluate(
+      `(async()=>{const m=await import('/data/levels.js');return m.TEMAS.length})()`, true);
+    const carpetas = await evaluate('document.querySelectorAll(".unit").length');
+    check('el inicio lleva a las carpetas de unidades', carpetas === temas,
+      `${carpetas} de ${temas}`);
+    await shot('2-unidades');
+
+    // ── niveles de la unidad 1 ──
+    const esperados = await evaluate(`(async()=>{
+      const m = await import('/data/levels.js');
+      const t = m.TEMAS[0];
+      return m.LEVELS.filter((l) => l.id >= t.desde && l.id <= t.hasta).length;
+    })()`, true);
+    await evaluate('document.querySelectorAll(".unit")[0].click()');
+    await sleep(400);
     const levels = await evaluate('document.querySelectorAll(".level").length');
-    check('el mapa lista todos los niveles', levels === esperados, `${levels} de ${esperados}`);
-    check('nivel 1 desbloqueado', await evaluate('!document.querySelectorAll(".level")[0].disabled'));
-    check('nivel 2 bloqueado al empezar', await evaluate('document.querySelectorAll(".level")[1].disabled'));
-    await shot('2-mapa');
+    check('la carpeta abre los niveles de esa unidad', levels === esperados,
+      `${levels} de ${esperados}`);
+    check('ningún nivel queda bloqueado',
+      await evaluate('[...document.querySelectorAll(".level")].every((b) => !b.disabled)'));
+    await shot('2b-mapa');
 
     // ── jugar el nivel 1 respondiendo todo bien ──
     await evaluate('document.querySelectorAll(".level")[0].click()');
@@ -201,9 +215,13 @@ async function main() {
     await cdp.send('Page.navigate', { url: base }, S);
     await sleep(700);
     await evaluate('document.querySelector("#btn-play").click()');
-    await sleep(300);
-    check('el nivel 2 queda desbloqueado tras recargar',
-      await evaluate('!document.querySelectorAll(".level")[1].disabled'));
+    await sleep(400);
+    check('la carpeta muestra el progreso tras recargar',
+      (await evaluate('document.querySelector(".unit__stars").textContent')).startsWith('3'));
+    await evaluate('document.querySelectorAll(".unit")[0].click()');
+    await sleep(400);
+    check('el nivel jugado conserva sus estrellas',
+      await evaluate('document.querySelectorAll(".level")[0].querySelectorAll(".on").length === 3'));
     await shot('5-mapa-progreso');
 
     // ── sin scroll horizontal ──
@@ -218,23 +236,29 @@ async function main() {
       const progreso = {};
       m.LEVELS.forEach((l) => { progreso[l.id] = { stars: 3, best: 100 }; });
       localStorage.setItem(s.KEY, JSON.stringify(progreso));
-      // el nivel con más preguntas de cálculo
+      // el nivel con más preguntas de cálculo, ubicado dentro de su unidad
       let mejor = -1, max = 0;
       m.LEVELS.forEach((l, i) => {
         const n = l.questions.filter((q) => q.type === 'num').length;
         if (n > max) { max = n; mejor = i; }
       });
-      return mejor;
+      if (mejor < 0) return null;
+      const nivel = m.LEVELS[mejor];
+      const tema = m.TEMAS.findIndex((t) => nivel.id >= t.desde && nivel.id <= t.hasta);
+      const dentro = m.LEVELS.filter((l) => l.id >= m.TEMAS[tema].desde && l.id <= nivel.id).length - 1;
+      return { global: mejor, tema, dentro };
     })()`, true);
 
-    if (nivelNum < 0) {
+    if (!nivelNum) {
       check('hay preguntas numéricas para probar', false);
     } else {
       await cdp.send('Page.navigate', { url: base }, S);
       await sleep(700);
       await evaluate('document.querySelector("#btn-play").click()');
       await sleep(400);
-      await evaluate(`document.querySelectorAll('.level')[${nivelNum}].click()`);
+      await evaluate(`document.querySelectorAll('.unit')[${nivelNum.tema}].click()`);
+      await sleep(400);
+      await evaluate(`document.querySelectorAll('.level')[${nivelNum.dentro}].click()`);
       await sleep(300);
 
       // Busca una pregunta de cálculo y revisa el botón antes de contestarla.
@@ -261,14 +285,44 @@ async function main() {
       // Vuelve a empezar el nivel y ahora sí lo juega entero.
       await evaluate('document.querySelector("#btn-quit").click()');
       await sleep(300);
-      await evaluate(`document.querySelectorAll('.level')[${nivelNum}].click()`);
+      await evaluate(`document.querySelectorAll('.level')[${nivelNum.dentro}].click()`);
       await sleep(300);
-      await jugarNivel(nivelNum);
+      await jugarNivel(nivelNum.global);
       await sleep(300);
       const estrellasNum = await evaluate('document.querySelectorAll("#result-stars .on").length');
       check('se puede completar un nivel entero de cálculo', estrellasNum === 3,
         `${estrellasNum} estrellas`);
     }
+
+    // ── el orden de las preguntas cambia en cada partida ──
+    await cdp.send('Page.navigate', { url: base }, S);
+    await sleep(700);
+    await evaluate('document.querySelector("#btn-play").click()');
+    await sleep(400);
+    await evaluate('document.querySelectorAll(".unit")[0].click()');
+    await sleep(400);
+    const primeras = new Set();
+    for (let i = 0; i < 6; i++) {
+      await evaluate('document.querySelectorAll(".level")[0].click()');
+      await sleep(220);
+      primeras.add(await evaluate('document.querySelector("#question").innerHTML'));
+      await evaluate('document.querySelector("#btn-quit").click()');
+      await sleep(220);
+    }
+    check('las preguntas salen mezcladas en cada partida', primeras.size > 1,
+      `${primeras.size} primeras preguntas distintas en 6 intentos`);
+
+    const ordenOpciones = new Set();
+    for (let i = 0; i < 6; i++) {
+      await evaluate('document.querySelectorAll(".level")[0].click()');
+      await sleep(220);
+      ordenOpciones.add(await evaluate(
+        '[...document.querySelectorAll(".option")].map((o) => o.textContent).join("|")'));
+      await evaluate('document.querySelector("#btn-quit").click()');
+      await sleep(220);
+    }
+    check('las opciones también se mezclan', ordenOpciones.size > 1,
+      `${ordenOpciones.size} combinaciones distintas en 6 intentos`);
 
     // ── auditoría: PWA, metadatos y consola limpia ──
     const meta = await evaluate(`(() => ({
