@@ -3,14 +3,21 @@
 Juego web de niveles (tipo cuestionario) para repasar **estructura y propiedades de la
 materia** en sistemas agropecuarios y ciencias ambientales.
 
-Fuentes del contenido (18 niveles, 144 preguntas):
+Fuentes del contenido (29 niveles, 240 preguntas), organizadas en dos temas:
 
 - la **lámina** de la materia (las 8 secciones del póster);
 - los **apuntes de cátedra del Tema 1** — de ahí sale el orden de los niveles 1 a 15:
   teoría atomista → Dalton → Thomson → Rutherford → Bohr → mecano-cuántico →
   números cuánticos → configuración electrónica → capa de valencia → propiedades →
   isótopos → aplicaciones;
-- el **Trabajo Práctico de Aula N° 1**, que da los niveles 16 a 18 (ejercitación).
+- el **Trabajo Práctico de Aula N° 1**, que da los niveles 16 a 18 (ejercitación);
+- los **apuntes del Tema 2** (elementos químicos), que dan los niveles 19 a 26: intentos
+  de clasificación → tabla moderna → configuración y ubicación → octeto → bloques y
+  familias → propiedades periódicas → elementos esenciales → alimentos y ambiente;
+- el **Trabajo Práctico de Aula N° 2**, que da los niveles 27 a 29.
+
+Los temas se declaran en `TEMAS` (en `data/levels.js`) y el mapa los muestra agrupados.
+Al sumar un tema nuevo hay que agregar su entrada ahí.
 
 Al agregar contenido nuevo, respetar esa progresión y citar los datos como están en la
 fuente (por ejemplo, el apunte asigna p<sub>x</sub> → m = −1, p<sub>y</sub> → 0,

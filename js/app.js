@@ -1,4 +1,4 @@
-import { LEVELS } from '../data/levels.js';
+import { LEVELS, TEMAS } from '../data/levels.js';
 import { loadProgress, saveLevelResult, resetProgress, isUnlocked, totalStars } from './storage.js';
 import { sfx } from './sfx.js';
 
@@ -58,6 +58,16 @@ function renderMap() {
   LEVELS.forEach((lvl) => {
     const unlocked = isUnlocked(lvl.id, progress);
     const stars = progress[lvl.id]?.stars || 0;
+    const best = progress[lvl.id]?.best || 0;
+
+    // encabezado al empezar cada tema
+    const tema = TEMAS.find((t) => t.desde === lvl.id);
+    if (tema) {
+      const h = document.createElement('h3');
+      h.className = 'levels__tema';
+      h.textContent = tema.titulo;
+      cont.appendChild(h);
+    }
 
     const btn = document.createElement('button');
     btn.className = `level${unlocked ? '' : ' level--locked'}`;
@@ -68,6 +78,7 @@ function renderMap() {
       <div class="level__body">
         <div class="level__name">${lvl.id}. ${lvl.title}</div>
         <div class="level__sub">${lvl.subtitle}</div>
+        ${best ? `<div class="level__best">Mejor puntaje: ${best}</div>` : ''}
       </div>
       <div class="level__stars" role="img" aria-label="${stars} de 3 estrellas">${starsRow(stars)}</div>`;
     if (!unlocked) btn.setAttribute('aria-label', `Nivel ${lvl.id}, ${lvl.title}: bloqueado`);

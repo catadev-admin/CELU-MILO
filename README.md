@@ -1,11 +1,11 @@
 # ⚛️ Química Quest
 
-Juego de niveles para repasar **estructura y propiedades de la materia** en sistemas
-agropecuarios y ciencias ambientales. 18 niveles, 144 preguntas, hecho para jugar desde
-el celular.
+Juego de niveles para repasar **química general e inorgánica** en sistemas agropecuarios
+y ciencias ambientales. 29 niveles, 240 preguntas, hecho para jugar desde el celular.
 
-El contenido sale de la lámina de la materia, de los **apuntes de cátedra del Tema 1** y
-del **Trabajo Práctico de Aula N° 1**.
+El contenido sale de la lámina de la materia, de los **apuntes de cátedra** y de los
+**Trabajos Prácticos de Aula** de los temas 1 (estructura de la materia) y 2 (elementos
+químicos).
 
 ## Cómo se juega
 
@@ -18,6 +18,8 @@ del **Trabajo Práctico de Aula N° 1**.
 5. El progreso queda guardado en el teléfono.
 
 ## Los niveles
+
+### Tema 1 · Estructura de la materia
 
 Siguen el orden del apunte: primero la historia de los modelos atómicos, después la
 estructura y sus propiedades, y al final las aplicaciones y la ejercitación del TP.
@@ -42,6 +44,22 @@ estructura y sus propiedades, y al final las aplicaciones y la ejercitación del
 | 16 | TP · Partículas | Práctica: contar partículas y escribir la notación |
 | 17 | TP · Isótopos | Práctica: clasificar núclidos y núclidos de uso agronómico |
 | 18 | TP · Problemas | Práctica: cobalto-60, fertilizante con ¹⁵N y xenón |
+
+### Tema 2 · Elementos químicos
+
+| # | Nivel | Tema |
+|---|-------|------|
+| 19 | Ordenar los elementos | Döbereiner, Newlands, Mendeleiev y Moseley |
+| 20 | La tabla moderna | Períodos, grupos y nomenclatura IUPAC |
+| 21 | Ubicar en la tabla | De la configuración electrónica al grupo y período |
+| 22 | Teoría del octeto | Lewis, iones y carácter metálico |
+| 23 | Bloques y familias | Representativos, transición y bloques s, p, d, f |
+| 24 | Propiedades periódicas | Radio, electronegatividad, ionización y afinidad |
+| 25 | Elementos esenciales | Nutrición vegetal y animal |
+| 26 | Alimentos y ambiente | Biodisponibilidad, contaminantes y manejo |
+| 27 | TP 2 · Iones | Práctica: cargas y configuraciones |
+| 28 | TP 2 · Ubicación | Práctica: grupo, período y bloque |
+| 29 | TP 2 · Comparar | Práctica: tendencias periódicas |
 
 ## Instalarlo en el celular
 
