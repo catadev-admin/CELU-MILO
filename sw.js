@@ -1,6 +1,6 @@
 // Service worker: cachea el juego para poder jugar sin conexión.
 // Subí el número de CACHE cada vez que cambien los archivos del juego.
-const CACHE = 'quimica-quest-v7';
+const CACHE = 'quimica-quest-v8';
 
 const ASSETS = [
   '.',

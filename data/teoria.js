@@ -332,6 +332,336 @@ export const TEORIA = {
       dato: 'Órbita ≠ orbital. En el examen, esa palabra cambia toda la respuesta.',
     },
   ],
+
+  // ══════════════════════════════ NIVEL 7 ══════════════════════════════
+  7: [
+    {
+      titulo: 'Cuatro números para cada electrón',
+      texto: `<p>En el modelo mecánico-cuántico, cada electrón de un átomo queda descrito
+        por <b>cuatro números cuánticos</b>: <b>n</b>, <b>l</b>, <b>m<sub>l</sub></b> y
+        <b>m<sub>s</sub></b>.</p>
+        <p>Pensalos como una dirección: el primero dice en qué piso está, el segundo en qué
+        departamento, el tercero hacia dónde da y el cuarto, cómo está orientado adentro.
+        Dos electrones del mismo átomo nunca tienen los cuatro iguales.</p>`,
+    },
+    {
+      titulo: 'n · el nivel de energía',
+      texto: `<p>El número cuántico <b>principal (n)</b> define los niveles de energía. Toma
+        valores enteros de <b>1 a 8</b>. A mayor n, mayor energía y mayor distancia media al
+        núcleo: nos da idea del <b>tamaño</b> del orbital.</p>
+        <p>La cantidad máxima de electrones de un nivel es <b>2 · n²</b>. Además, cada nivel
+        tiene una notación espectroscópica:</p>
+        <table class="tabla">
+          <tr><th>n</th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+          <tr><th>letra</th><td>K</td><td>L</td><td>M</td><td>N</td><td>O</td><td>P</td><td>Q</td><td>R</td></tr>
+        </table>`,
+      dato: 'Nivel 1 → 2 e⁻, nivel 2 → 8 e⁻, nivel 3 → 18 e⁻, nivel 4 → 32 e⁻.',
+    },
+    {
+      titulo: 'l · la forma del orbital',
+      texto: `<p>El número cuántico <b>secundario o azimutal (l)</b> determina el subnivel y
+        la <b>forma</b> del orbital. Sus valores dependen de n: van de <b>0 hasta
+        (n − 1)</b>.</p>
+        <p>Así, para n = 4, l puede valer 0, 1, 2 y 3. Cada valor tiene su letra:</p>
+        <ul>
+          <li><b>l = 0 → s</b>, orbital esférico</li>
+          <li><b>l = 1 → p</b>, orbital piriforme</li>
+          <li><b>l = 2 → d</b> y <b>l = 3 → f</b>, de formas más complejas</li>
+        </ul>`,
+      figura: 'formas-orbitales',
+    },
+    {
+      titulo: 'mₗ · hacia dónde apunta',
+      texto: `<p>El número cuántico <b>magnético (m<sub>l</sub>)</b> define la orientación
+        del orbital en el espacio. Para cada l toma todos los valores enteros entre
+        <b>−l y +l</b>.</p>
+        <p>Si l = 1 hay tres valores (−1, 0, +1): por eso hay <b>tres orbitales p</b>. Según
+        el apunte, p<sub>x</sub> corresponde a m = −1, p<sub>y</sub> a m = 0 y
+        p<sub>z</sub> a m = +1.</p>
+        <p>Con l = 2 hay cinco valores (−2 a +2): cinco orbitales d, con capacidad para
+        10 electrones.</p>`,
+    },
+    {
+      titulo: 'mₛ · el espín',
+      texto: `<p>El número cuántico de <b>espín (m<sub>s</sub>)</b> describe el sentido de
+        giro del electrón. Sólo puede valer <b>+1/2</b> (↑) o <b>−1/2</b> (↓).</p>
+        <p>Tiene una particularidad: es el <b>único</b> de los cuatro que no se desprende de
+        la ecuación de Schrödinger. Es una propiedad intrínseca de las partículas
+        subatómicas. Como toda carga en movimiento genera un campo magnético, los electrones
+        se comportan como pequeños imanes.</p>`,
+      ejemplo: {
+        enunciado: 'Para n = 3, ¿qué subniveles hay y cuántos electrones entran en total?',
+        pasos: [
+          'l va de 0 a n−1, o sea 0, 1 y 2: los subniveles 3s, 3p y 3d.',
+          '3s tiene 1 orbital (2 e⁻); 3p tiene 3 orbitales (6 e⁻); 3d tiene 5 orbitales (10 e⁻).',
+          'Total: 2 + 6 + 10 = 18 electrones.',
+        ],
+        resultado: 'Coincide con la fórmula 2 · n² = 2 · 3² = 18 electrones.',
+      },
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 8 ══════════════════════════════
+  8: [
+    {
+      titulo: 'Qué es la configuración electrónica',
+      texto: `<p>La <b>configuración electrónica (C.E.)</b> es cómo se distribuyen los
+        electrones en los niveles y subniveles de un átomo, en su <b>estado fundamental</b>:
+        el átomo aislado, en su estado de mínima energía.</p>
+        <p>Importa porque de ella dependen gran parte de las propiedades físicas y
+        <b>todas</b> las propiedades químicas del elemento.</p>`,
+    },
+    {
+      titulo: 'Aufbau y el diagrama de Moeller',
+      texto: `<p>El <b>principio de Aufbau</b> (“construir”) dice que los electrones se van
+        sumando de a uno, ocupando primero los orbitales de <b>menor energía</b>.</p>
+        <p>El detalle es que a partir del 3p los subniveles se <b>superponen</b>
+        energéticamente. Después del 3p no sigue el 3d sino el <b>4s</b>, porque el 3d tiene
+        más orbitales y más electrones, y por lo tanto más energía. Para no perderse se usa
+        el <b>diagrama de Moeller</b> o regla de las diagonales:</p>`,
+      figura: 'moeller',
+      dato: 'El orden es 1s 2s 2p 3s 3p 4s 3d 4p 5s 4d 5p 6s…',
+    },
+    {
+      titulo: 'Pauli · dos por orbital',
+      texto: `<p>El <b>principio de exclusión de Pauli</b> establece que un orbital no puede
+        contener más de <b>dos electrones</b>, y que esos dos deben tener <b>espines
+        opuestos</b> (↑↓).</p>
+        <p>Dicho de otro modo: en un mismo átomo no puede haber dos electrones con los
+        cuatro números cuánticos iguales. Si comparten n, l y m<sub>l</sub>, tienen que
+        diferir en m<sub>s</sub>.</p>`,
+    },
+    {
+      titulo: 'Hund · primero uno en cada uno',
+      texto: `<p>La <b>regla de Hund</b> o de máxima multiplicidad dice que, dentro de un
+        mismo subnivel, los electrones se acomodan de manera que quede el <b>mayor número
+        posible de electrones desapareados</b>, todos con el mismo espín.</p>
+        <p>Es como sentarse en un colectivo vacío: primero cada uno ocupa un asiento libre,
+        y recién cuando no quedan asientos solos, se comparten.</p>`,
+      figura: 'regla-hund',
+    },
+    {
+      titulo: 'Cómo se escribe',
+      texto: `<p>En la notación <b>2p<sup>4</sup></b>: el número es el <b>nivel</b>, la letra
+        es el <b>subnivel</b> y el superíndice es la <b>cantidad de electrones</b> alojados
+        ahí.</p>`,
+      ejemplo: {
+        enunciado: 'Escribí la configuración electrónica del nitrógeno (Z = 7).',
+        pasos: [
+          'Z = 7 significa 7 protones y, si es neutro, 7 electrones para acomodar.',
+          'Siguiendo Moeller: primero 1s, que aloja 2 → 1s².',
+          'Siguen 2s, que aloja 2 → 2s². Van 4 electrones.',
+          'Quedan 3, que entran en 2p → 2p³.',
+        ],
+        resultado: '1s² 2s² 2p³. Por Hund, esos 3 electrones de 2p quedan desapareados.',
+      },
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 9 ══════════════════════════════
+  9: [
+    {
+      titulo: 'C.E. y D.O.: en qué se diferencian',
+      texto: `<p>La <b>configuración electrónica</b> resume por subnivel: dice que hay 5
+        electrones en 2p, pero no cómo están repartidos.</p>
+        <p>El <b>diagrama de orbitales (D.O.)</b> abre cada subnivel en sus orbitales,
+        dibujados como casillas, y muestra los espines con flechas. Es la única forma de ver
+        qué electrones están <b>apareados</b> y cuáles quedan <b>desapareados</b>.</p>`,
+    },
+    {
+      titulo: 'La convención de las flechas',
+      texto: `<p>Por convención, el <b>primer</b> electrón que entra a una casilla se dibuja
+        en la parte inferior y tiene espín <b>+1/2</b> (↑). El que se ubica arriba tiene
+        espín <b>−1/2</b> (↓).</p>
+        <p>Parece un detalle menor, pero define el signo del espín en los ejercicios donde
+        piden los cuatro números cuánticos de un electrón determinado.</p>`,
+    },
+    {
+      titulo: 'El flúor, electrón por electrón',
+      texto: `<p>El flúor tiene Z = 9, así que hay que ubicar 9 electrones:
+        <b>1s² 2s² 2p⁵</b>. Numerándolos en orden de entrada, los tres primeros del subnivel
+        2p (e5, e6, e7) entran solos por Hund, y recién los dos últimos (e8, e9) se aparean.</p>`,
+      figura: 'do-fluor',
+    },
+    {
+      titulo: 'Leer los cuatro números',
+      texto: `<p>Con el diagrama armado se pueden leer los cuatro números cuánticos de
+        cualquier electrón. Dos casos del apunte:</p>
+        <ul>
+          <li><b>Electrón 4</b>: está en 2s → n = 2; subnivel s → l = 0; entonces m = 0. Es
+              el segundo de su casilla → s = <b>−1/2</b>.</li>
+          <li><b>Electrón 6</b>: está en 2p<sub>y</sub> → n = 2, l = 1, m = 0. Es el primero
+              de su casilla → s = <b>+1/2</b>.</li>
+        </ul>`,
+      ejemplo: {
+        enunciado: 'Del diagrama del flúor, indicá: niveles ocupados, orbitales ocupados, pares apareados y electrones desapareados.',
+        pasos: [
+          'Niveles: aparecen el 1 y el 2 → 2 niveles ocupados.',
+          'Orbitales: 1 del 1s + 1 del 2s + 3 del 2p → 5 orbitales.',
+          'Apareados: 1s (1 par) + 2s (1 par) + 2px y 2py (2 pares) → 4 pares.',
+          'Desapareados: queda solo el de 2pz.',
+        ],
+        resultado: '2 niveles, 5 orbitales, 4 pares apareados y 1 electrón desapareado.',
+      },
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 10 ═════════════════════════════
+  10: [
+    {
+      titulo: 'Los electrones que reaccionan',
+      texto: `<p>Los electrones de la <b>capa más externa</b> se llaman <b>electrones de
+        valencia</b>, y son los que interaccionan para formar los enlaces químicos.</p>
+        <p>¿Por qué justo ésos? Porque los electrones internos están más fuertemente unidos
+        al núcleo: tienen menor energía, mayor estabilidad, y hace falta mucha más energía
+        para arrancarlos.</p>`,
+      dato: 'La química de un elemento la deciden sus electrones de valencia.',
+    },
+    {
+      titulo: 'La CEE dice el grupo y el período',
+      texto: `<p>La <b>configuración electrónica externa (C.E.E.)</b> es la del último nivel
+        ocupado. Con ella se ubica cualquier elemento representativo en la tabla:</p>
+        <ul>
+          <li>La <b>cantidad</b> de electrones de la CEE = número de <b>grupo</b>.</li>
+          <li>El <b>nivel</b> de la CEE = número de <b>período</b>.</li>
+        </ul>`,
+      figura: 'grupos-cee',
+    },
+    {
+      titulo: 'Los grupos representativos',
+      texto: `<table class="tabla">
+          <tr><th>Grupo</th><th>CEE</th><th>e⁻ valencia</th></tr>
+          <tr><td>I A · alcalinos</td><td>ns<sup>1</sup></td><td>1</td></tr>
+          <tr><td>II A · alcalino térreos</td><td>ns<sup>2</sup></td><td>2</td></tr>
+          <tr><td>III A</td><td>ns<sup>2</sup> np<sup>1</sup></td><td>3</td></tr>
+          <tr><td>IV A</td><td>ns<sup>2</sup> np<sup>2</sup></td><td>4</td></tr>
+          <tr><td>V A · nitrogenoideos</td><td>ns<sup>2</sup> np<sup>3</sup></td><td>5</td></tr>
+          <tr><td>VI A · calcógenos</td><td>ns<sup>2</sup> np<sup>4</sup></td><td>6</td></tr>
+          <tr><td>VII A · halógenos</td><td>ns<sup>2</sup> np<sup>5</sup></td><td>7</td></tr>
+          <tr><td>VIII A · gases nobles</td><td>ns<sup>2</sup> np<sup>6</sup></td><td>8</td></tr>
+        </table>`,
+    },
+    {
+      titulo: 'Transición y transición interna',
+      texto: `<p>Los elementos de <b>transición</b> tienen una CEE que varía entre
+        (n−1)d<sup>1</sup> ns<sup>2</sup> y (n−1)d<sup>10</sup> ns<sup>2</sup>, con n ≥ 4.</p>
+        <p>Los de <b>transición interna</b> van entre (n−2)f<sup>1</sup> (n−1)d<sup>0-1</sup>
+        ns<sup>2</sup> y (n−2)f<sup>14</sup> (n−1)d<sup>1</sup> ns<sup>2</sup>, con n = 6 o 7.</p>`,
+      ejemplo: {
+        enunciado: 'Un elemento tiene CEE 3s² 3p⁴. ¿De cuál se trata?',
+        pasos: [
+          'Electrones de valencia: 2 + 4 = 6 → grupo VI A.',
+          'Nivel de la CEE: 3 → tercer período.',
+          'Cruzando ambos datos en la tabla periódica…',
+        ],
+        resultado: 'Es el azufre (S).',
+      },
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 11 ═════════════════════════════
+  11: [
+    {
+      titulo: 'Z y A: la ficha del átomo',
+      texto: `<p>El <b>número atómico (Z)</b> es la cantidad de protones. Es lo que
+        <b>define la identidad</b> del elemento: si cambia Z, cambia el elemento. En un
+        átomo neutro, Z indica también la cantidad de electrones.</p>
+        <p>El <b>número másico (A)</b> es la suma de protones y neutrones, es decir los
+        <b>nucleones</b>: <b>A = Z + N</b>. Como la masa de los electrones es despreciable,
+        A se aproxima mucho a la masa del átomo.</p>`,
+      figura: 'notacion-az',
+    },
+    {
+      titulo: 'Cada número manda en algo',
+      texto: `<p>Según el apunte de cátedra, hay un reparto claro:</p>
+        <ul>
+          <li>El <b>número atómico (Z)</b> determina las propiedades <b>químicas</b>.</li>
+          <li>El <b>número másico (A)</b> determina las propiedades <b>físicas</b>.</li>
+        </ul>
+        <p>Esto explica por qué los isótopos —igual Z, distinto A— tienen comportamiento
+        químico semejante pero propiedades físicas distintas.</p>`,
+      dato: 'Z manda en lo químico, A en lo físico.',
+    },
+    {
+      titulo: 'Cuando cambian los electrones',
+      texto: `<p>Si un átomo <b>gana o pierde electrones</b> deja de ser neutro y se
+        transforma en un <b>ion</b>:</p>
+        <ul>
+          <li><b>Gana</b> electrones → carga negativa → <b>anión</b>.</li>
+          <li><b>Pierde</b> electrones → carga positiva → <b>catión</b>.</li>
+        </ul>
+        <p>Lo que nunca cambia es el número de protones. Para contar los electrones de un
+        ion: <b>e⁻ = Z − carga</b>.</p>`,
+      figura: 'anion-cation',
+    },
+    {
+      titulo: 'Iones isoelectrónicos',
+      texto: `<p>Se llaman <b>isoelectrónicos</b> a los iones que tienen <b>igual número de
+        electrones</b>, aunque sean de elementos distintos.</p>
+        <p>Ejemplo del apunte: el anión <b>Cl⁻</b> (Z = 17, gana 1 → 18 e⁻) y el catión
+        <b>Ca²⁺</b> (Z = 20, pierde 2 → 18 e⁻). Los dos terminan con 18 electrones.</p>`,
+      ejemplo: {
+        enunciado: 'Para el ion ³¹₁₅P³⁻, indicá protones, neutrones y electrones.',
+        pasos: [
+          'Z = 15 → 15 protones.',
+          'N = A − Z = 31 − 15 = 16 neutrones.',
+          'e⁻ = Z − carga = 15 − (−3) = 18 electrones.',
+        ],
+        resultado: '15 p⁺, 16 n⁰ y 18 e⁻. Ganó 3 electrones, por eso su carga es −3.',
+      },
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 12 ═════════════════════════════
+  12: [
+    {
+      titulo: 'Cuando cambia el número de neutrones',
+      texto: `<p>Si cambia el número de <b>neutrones</b>, seguimos con el mismo elemento
+        (mismo Z) pero con distinto número másico. Esos nucleídos se llaman
+        <b>isótopos</b>.</p>
+        <p>El caso más conocido es el del carbono:</p>`,
+      figura: 'isotopos-carbono',
+    },
+    {
+      titulo: 'Isótopos, isóbaros e isótonos',
+      texto: `<p>Son tres relaciones distintas y conviene no mezclarlas:</p>
+        <table class="tabla">
+          <tr><th></th><th>Z</th><th>A</th><th>N</th></tr>
+          <tr><td><b>Isótopos</b></td><td>igual</td><td>distinto</td><td>distinto</td></tr>
+          <tr><td><b>Isóbaros</b></td><td>distinto</td><td>igual</td><td>distinto</td></tr>
+          <tr><td><b>Isótonos</b></td><td>distinto</td><td>distinto</td><td>igual</td></tr>
+        </table>
+        <p>Sólo los <b>isótopos</b> son el mismo elemento. Los isóbaros y los isótonos son
+        elementos diferentes que casualmente comparten un número.</p>`,
+      dato: 'Isótopos: igual Z. Isóbaros: igual A. Isótonos: igual N.',
+    },
+    {
+      titulo: 'Por qué se parecen químicamente',
+      texto: `<p>Las propiedades químicas dependen del número atómico, y los isótopos lo
+        comparten. Si además son neutros, tienen la misma distribución de electrones: por
+        eso reaccionan de manera semejante.</p>
+        <p>Lo que sí cambia es la <b>masa</b>, y con ella algunas propiedades físicas o
+        nucleares. El <sup>37</sup>Cl es más pesado que el <sup>35</sup>Cl porque tiene dos
+        neutrones más.</p>`,
+    },
+    {
+      titulo: 'Abundancia isotópica',
+      texto: `<p>Los isótopos de un elemento aparecen en la naturaleza en proporciones muy
+        distintas, y a eso se le llama <b>abundancia isotópica</b>. Hay elementos con una
+        sola forma isotópica, como el sodio y el flúor, y otros con varias:</p>
+        <table class="tabla">
+          <tr><th>Elemento</th><th>Isótopo (A)</th><th>Abundancia</th></tr>
+          <tr><td>Hidrógeno</td><td>1</td><td>99,98 %</td></tr>
+          <tr><td></td><td>2</td><td>0,016 %</td></tr>
+          <tr><td>Oxígeno</td><td>16</td><td>99,76 %</td></tr>
+          <tr><td></td><td>18</td><td>0,20 %</td></tr>
+          <tr><td>Azufre</td><td>32</td><td>95,91 %</td></tr>
+          <tr><td></td><td>34</td><td>4,2 %</td></tr>
+        </table>
+        <p>Ojo con una confusión frecuente: <b>no todos los isótopos son radiactivos</b>.
+        Muchos son perfectamente estables.</p>`,
+    },
+  ],
 };
 
 export const tieneTeoria = (id) => Array.isArray(TEORIA[id]) && TEORIA[id].length > 0;

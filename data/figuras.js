@@ -206,6 +206,236 @@ export const FIGURAS = {
     <text x="240" y="142" ${base} font-size="8" fill="var(--txt-dim)" text-anchor="middle">zona donde es más probable</text>
   </g>
 </svg>`,
+
+  // ── Nivel 7: números cuánticos ──────────────────────────────────
+  'formas-orbitales': `
+<svg viewBox="0 0 320 190" role="img" aria-label="Formas de los orbitales s, p y d">
+  <g ${base} font-size="10" font-weight="700" text-anchor="middle">
+    <circle cx="45" cy="55" r="26" fill="var(--accent)" opacity=".55"/>
+    <text x="45" y="98">s</text>
+    <text x="45" y="112" font-size="8" font-weight="400" fill="var(--txt-dim)">esférico</text>
+
+    <g transform="translate(140 55)">
+      <ellipse cx="0" cy="-16" rx="12" ry="20" fill="var(--accent-2)" opacity=".65"/>
+      <ellipse cx="0" cy="16" rx="12" ry="20" fill="var(--accent-2)" opacity=".65"/>
+    </g>
+    <text x="140" y="98">p</text>
+    <text x="140" y="112" font-size="8" font-weight="400" fill="var(--txt-dim)">piriforme (2 lóbulos)</text>
+
+    <g transform="translate(250 55)">
+      <ellipse cx="-15" cy="-15" rx="10" ry="16" transform="rotate(45 -15 -15)" fill="var(--bad)" opacity=".6"/>
+      <ellipse cx="15" cy="-15" rx="10" ry="16" transform="rotate(-45 15 -15)" fill="var(--bad)" opacity=".6"/>
+      <ellipse cx="-15" cy="15" rx="10" ry="16" transform="rotate(-45 -15 15)" fill="var(--bad)" opacity=".6"/>
+      <ellipse cx="15" cy="15" rx="10" ry="16" transform="rotate(45 15 15)" fill="var(--bad)" opacity=".6"/>
+    </g>
+    <text x="250" y="98">d</text>
+    <text x="250" y="112" font-size="8" font-weight="400" fill="var(--txt-dim)">4 lóbulos</text>
+  </g>
+  <g ${base} font-size="9" text-anchor="middle">
+    <text x="160" y="140" fill="var(--txt-dim)">Los tres orbitales p, según su orientación:</text>
+    <text x="80" y="162" fill="var(--accent-2)">p&#8339; · m = −1</text>
+    <text x="160" y="162" fill="var(--accent-2)">p&#8341; · m = 0</text>
+    <text x="245" y="162" fill="var(--accent-2)">p&#8346; · m = +1</text>
+  </g>
+</svg>`,
+
+  // ── Nivel 8: orden de llenado ───────────────────────────────────
+  moeller: `
+<svg viewBox="0 0 320 210" role="img" aria-label="Diagrama de Moeller o regla de las diagonales">
+  <g ${base} font-size="12" font-weight="700">
+    <text x="30" y="26">1s</text>
+    <text x="30" y="52">2s</text><text x="76" y="52">2p</text>
+    <text x="30" y="78">3s</text><text x="76" y="78">3p</text><text x="122" y="78">3d</text>
+    <text x="30" y="104">4s</text><text x="76" y="104">4p</text><text x="122" y="104">4d</text><text x="168" y="104">4f</text>
+    <text x="30" y="130">5s</text><text x="76" y="130">5p</text><text x="122" y="130">5d</text><text x="168" y="130">5f</text>
+    <text x="30" y="156">6s</text><text x="76" y="156">6p</text><text x="122" y="156">6d</text>
+    <text x="30" y="182">7s</text><text x="76" y="182">7p</text>
+  </g>
+  <g stroke="var(--accent)" stroke-width="1.6" opacity=".8">
+    <line x1="60" y1="44" x2="24" y2="60"/>
+    <line x1="106" y1="70" x2="24" y2="112"/>
+    <line x1="152" y1="96" x2="24" y2="164"/>
+    <line x1="198" y1="122" x2="60" y2="192"/>
+  </g>
+  <text x="230" y="46" ${base} font-size="9" fill="var(--txt-dim)">Se siguen las</text>
+  <text x="230" y="58" ${base} font-size="9" fill="var(--txt-dim)">diagonales, de</text>
+  <text x="230" y="70" ${base} font-size="9" fill="var(--txt-dim)">arriba hacia abajo</text>
+  <text x="230" y="150" ${base} font-size="9" fill="var(--accent)">4s se llena</text>
+  <text x="230" y="162" ${base} font-size="9" fill="var(--accent)">antes que 3d</text>
+</svg>`,
+
+  'regla-hund': `
+<svg viewBox="0 0 320 150" role="img" aria-label="Regla de Hund: primero uno por orbital, después se aparean">
+  <g stroke="var(--line)" stroke-width="1.5" fill="none">
+    <rect x="40" y="34" width="26" height="26"/><rect x="66" y="34" width="26" height="26"/><rect x="92" y="34" width="26" height="26"/>
+    <rect x="200" y="34" width="26" height="26"/><rect x="226" y="34" width="26" height="26"/><rect x="252" y="34" width="26" height="26"/>
+  </g>
+  <g ${base} font-size="15" font-weight="700" text-anchor="middle" fill="var(--accent)">
+    <text x="53" y="53">↑</text><text x="79" y="53">↑</text><text x="105" y="53">↑</text>
+  </g>
+  <g ${base} font-size="15" font-weight="700" text-anchor="middle" fill="var(--bad)">
+    <text x="213" y="53">↑↓</text><text x="239" y="53">↑</text>
+  </g>
+  <g ${base} font-size="10" text-anchor="middle">
+    <text x="79" y="22" fill="var(--ok)" font-weight="700">CORRECTO</text>
+    <text x="239" y="22" fill="var(--bad)" font-weight="700">INCORRECTO</text>
+    <text x="79" y="80" font-size="9" fill="var(--txt-dim)">uno por orbital,</text>
+    <text x="79" y="92" font-size="9" fill="var(--txt-dim)">espines paralelos</text>
+    <text x="239" y="80" font-size="9" fill="var(--txt-dim)">se aparean antes</text>
+    <text x="239" y="92" font-size="9" fill="var(--txt-dim)">de tiempo</text>
+  </g>
+  <text x="160" y="120" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">Ejemplo: los 3 electrones del subnivel 2p del nitrógeno</text>
+  <text x="160" y="138" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">Cada casilla es un orbital; caben 2 electrones con espines opuestos</text>
+</svg>`,
+
+  // ── Nivel 9: diagrama de orbitales ──────────────────────────────
+  'do-fluor': `
+<svg viewBox="0 0 320 175" role="img" aria-label="Diagrama de orbitales del flúor con sus nueve electrones numerados">
+  <g stroke="var(--line)" stroke-width="1.5" fill="none">
+    <rect x="30" y="50" width="30" height="30"/>
+    <rect x="100" y="50" width="30" height="30"/>
+    <rect x="180" y="50" width="30" height="30"/><rect x="210" y="50" width="30" height="30"/><rect x="240" y="50" width="30" height="30"/>
+  </g>
+  <g ${base} font-size="14" font-weight="700" text-anchor="middle" fill="var(--accent)">
+    <text x="45" y="70">↑↓</text><text x="115" y="70">↑↓</text>
+    <text x="195" y="70">↑↓</text><text x="225" y="70">↑↓</text><text x="255" y="70">↑</text>
+  </g>
+  <g ${base} font-size="11" font-weight="700" text-anchor="middle">
+    <text x="45" y="42">1s</text><text x="115" y="42">2s</text>
+    <text x="195" y="42">2p&#8339;</text><text x="225" y="42">2p&#8341;</text><text x="255" y="42">2p&#8346;</text>
+  </g>
+  <g ${base} font-size="8" text-anchor="middle" fill="var(--txt-dim)">
+    <text x="45" y="94">e1, e2</text><text x="115" y="94">e3, e4</text>
+    <text x="195" y="94">e5, e8</text><text x="225" y="94">e6, e9</text><text x="255" y="94">e7</text>
+    <text x="195" y="106">m = −1</text><text x="225" y="106">m = 0</text><text x="255" y="106">m = +1</text>
+  </g>
+  <circle cx="255" cy="65" r="14" fill="none" stroke="var(--accent-2)" stroke-width="2"/>
+  <text x="255" y="128" ${base} font-size="9" fill="var(--accent-2)" text-anchor="middle">el único desapareado</text>
+  <text x="160" y="20" ${base} font-size="10" font-weight="700" text-anchor="middle">Flúor (Z = 9): 1s² 2s² 2p⁵</text>
+  <text x="160" y="150" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    2 niveles ocupados · 5 orbitales · 4 pares apareados · 1 desapareado
+  </text>
+</svg>`,
+
+  // ── Nivel 10: capa de valencia y tabla ──────────────────────────
+  'grupos-cee': `
+<svg viewBox="0 0 320 175" role="img" aria-label="La configuración electrónica externa indica el grupo y el período">
+  <g ${base} font-size="9">
+    <rect x="20" y="24" width="280" height="24" rx="6" fill="var(--card-hi)"/>
+    <text x="30" y="40" font-size="12" font-weight="700">3s² 3p⁴</text>
+    <text x="120" y="40" fill="var(--txt-dim)">← configuración electrónica externa</text>
+
+    <path d="M52 52 L52 78" stroke="var(--accent-2)" stroke-width="2"/>
+    <path d="M110 52 L200 78" stroke="var(--accent)" stroke-width="2"/>
+
+    <rect x="20" y="82" width="120" height="40" rx="8" fill="var(--bg-soft)" stroke="var(--accent-2)"/>
+    <text x="32" y="100" fill="var(--accent-2)" font-weight="700">nivel 3</text>
+    <text x="32" y="114">→ período 3</text>
+
+    <rect x="164" y="82" width="136" height="40" rx="8" fill="var(--bg-soft)" stroke="var(--accent)"/>
+    <text x="176" y="100" fill="var(--accent)" font-weight="700">2 + 4 = 6 e⁻</text>
+    <text x="176" y="114">→ grupo VI A</text>
+  </g>
+  <text x="160" y="146" ${base} font-size="11" font-weight="700" text-anchor="middle">
+    Período 3 + grupo VI A = AZUFRE
+  </text>
+  <text x="160" y="164" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    Con la CEE se ubica cualquier elemento representativo
+  </text>
+</svg>`,
+
+  // ── Nivel 11: notación, iones ───────────────────────────────────
+  'notacion-az': `
+<svg viewBox="0 0 320 165" role="img" aria-label="Notación con número másico, número atómico y carga">
+  <g ${base}>
+    <text x="130" y="82" font-size="46" font-weight="700">X</text>
+    <text x="104" y="60" font-size="20" font-weight="700" fill="var(--accent-2)">A</text>
+    <text x="104" y="94" font-size="20" font-weight="700" fill="var(--accent)">Z</text>
+    <text x="168" y="56" font-size="20" font-weight="700" fill="var(--bad)">q</text>
+  </g>
+  <g stroke="var(--line)" stroke-width="1.2">
+    <line x1="100" y1="52" x2="40" y2="34"/>
+    <line x1="100" y1="98" x2="40" y2="120"/>
+    <line x1="186" y1="50" x2="250" y2="34"/>
+  </g>
+  <g ${base} font-size="9">
+    <text x="14" y="26" fill="var(--accent-2)">número másico</text>
+    <text x="14" y="38" fill="var(--txt-dim)">A = Z + N</text>
+    <text x="14" y="124" fill="var(--accent)">número atómico</text>
+    <text x="14" y="136" fill="var(--txt-dim)">Z = protones</text>
+    <text x="238" y="26" fill="var(--bad)">carga iónica</text>
+    <text x="238" y="38" fill="var(--txt-dim)">(si es un ion)</text>
+  </g>
+  <text x="160" y="158" ${base} font-size="10" text-anchor="middle" fill="var(--txt-dim)">
+    Ejemplo: <tspan font-weight="700" fill="var(--txt)">³¹₁₅P³⁻</tspan> → 15 p⁺, 16 n⁰ y 18 e⁻
+  </text>
+</svg>`,
+
+  'anion-cation': `
+<svg viewBox="0 0 320 160" role="img" aria-label="Formación de cationes y aniones">
+  <g ${base} font-size="9" text-anchor="middle">
+    <circle cx="60" cy="60" r="30" fill="var(--card-hi)" stroke="var(--line)"/>
+    <text x="60" y="58" font-size="13" font-weight="700">Na</text>
+    <text x="60" y="72" font-size="8" fill="var(--txt-dim)">11 p⁺ / 11 e⁻</text>
+    <text x="60" y="108">átomo neutro</text>
+
+    <path d="M100 60 L140 60" stroke="var(--accent-2)" stroke-width="2"/>
+    <text x="120" y="52" fill="var(--accent-2)">− 1 e⁻</text>
+
+    <circle cx="180" cy="60" r="26" fill="var(--accent-2)" opacity=".25" stroke="var(--accent-2)"/>
+    <text x="180" y="58" font-size="13" font-weight="700">Na⁺</text>
+    <text x="180" y="72" font-size="8" fill="var(--txt-dim)">11 p⁺ / 10 e⁻</text>
+    <text x="180" y="100" fill="var(--accent-2)" font-weight="700">CATIÓN (+)</text>
+    <text x="180" y="112" font-size="8" fill="var(--txt-dim)">más chico</text>
+
+    <text x="272" y="46" font-size="8" fill="var(--txt-dim)">si en cambio</text>
+    <text x="272" y="58" font-size="8" fill="var(--txt-dim)">gana e⁻:</text>
+    <text x="272" y="76" font-weight="700" fill="var(--accent)">ANIÓN (−)</text>
+    <text x="272" y="88" font-size="8" fill="var(--txt-dim)">más grande</text>
+  </g>
+  <text x="160" y="140" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    Los protones nunca cambian: si cambian, ya es otro elemento
+  </text>
+</svg>`,
+
+  // ── Nivel 12: isótopos ──────────────────────────────────────────
+  'isotopos-carbono': `
+<svg viewBox="0 0 320 165" role="img" aria-label="Los tres isótopos del carbono tienen 6 protones y distinta cantidad de neutrones">
+  <g ${base} font-size="9" text-anchor="middle">
+    <g transform="translate(58 60)">
+      <circle r="30" fill="var(--card-hi)" stroke="var(--line)"/>
+      <circle cx="-8" cy="-6" r="7" fill="var(--bad)"/><circle cx="6" cy="-8" r="7" fill="var(--bad)"/>
+      <circle cx="-2" cy="6" r="7" fill="var(--bad)"/><circle cx="-12" cy="8" r="7" fill="var(--txt-dim)"/>
+      <circle cx="10" cy="6" r="7" fill="var(--txt-dim)"/><circle cx="2" cy="-16" r="7" fill="var(--txt-dim)"/>
+      <text y="48" font-size="12" font-weight="700">¹²C</text>
+      <text y="62">6 p⁺ · 6 n⁰</text>
+      <text y="74" font-size="8" fill="var(--txt-dim)">98,9 %</text>
+    </g>
+    <g transform="translate(160 60)">
+      <circle r="32" fill="var(--card-hi)" stroke="var(--line)"/>
+      <circle cx="-8" cy="-6" r="7" fill="var(--bad)"/><circle cx="6" cy="-8" r="7" fill="var(--bad)"/>
+      <circle cx="-2" cy="6" r="7" fill="var(--bad)"/><circle cx="-14" cy="8" r="7" fill="var(--txt-dim)"/>
+      <circle cx="12" cy="6" r="7" fill="var(--txt-dim)"/><circle cx="2" cy="-18" r="7" fill="var(--txt-dim)"/>
+      <circle cx="16" cy="-14" r="7" fill="var(--txt-dim)"/>
+      <text y="50" font-size="12" font-weight="700">¹³C</text>
+      <text y="64">6 p⁺ · 7 n⁰</text>
+      <text y="76" font-size="8" fill="var(--txt-dim)">1,1 %</text>
+    </g>
+    <g transform="translate(264 60)">
+      <circle r="34" fill="var(--card-hi)" stroke="var(--line)"/>
+      <circle cx="-8" cy="-6" r="7" fill="var(--bad)"/><circle cx="6" cy="-8" r="7" fill="var(--bad)"/>
+      <circle cx="-2" cy="6" r="7" fill="var(--bad)"/><circle cx="-16" cy="8" r="7" fill="var(--txt-dim)"/>
+      <circle cx="14" cy="6" r="7" fill="var(--txt-dim)"/><circle cx="2" cy="-20" r="7" fill="var(--txt-dim)"/>
+      <circle cx="18" cy="-14" r="7" fill="var(--txt-dim)"/><circle cx="-16" cy="-14" r="7" fill="var(--txt-dim)"/>
+      <text y="52" font-size="12" font-weight="700">¹⁴C</text>
+      <text y="66">6 p⁺ · 8 n⁰</text>
+      <text y="78" font-size="8" fill="var(--txt-dim)">trazas</text>
+    </g>
+  </g>
+  <text x="160" y="158" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    Mismo Z (mismo elemento) · distinto N · distinto A
+  </text>
+</svg>`,
 };
 
 // Devuelve el SVG o una cadena vacía si el nombre no existe.
