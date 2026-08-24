@@ -242,26 +242,42 @@ export const FIGURAS = {
   // ── Nivel 8: orden de llenado ───────────────────────────────────
   moeller: `
 <svg viewBox="0 0 320 210" role="img" aria-label="Diagrama de Moeller o regla de las diagonales">
-  <g ${base} font-size="12" font-weight="700">
-    <text x="30" y="26">1s</text>
-    <text x="30" y="52">2s</text><text x="76" y="52">2p</text>
-    <text x="30" y="78">3s</text><text x="76" y="78">3p</text><text x="122" y="78">3d</text>
-    <text x="30" y="104">4s</text><text x="76" y="104">4p</text><text x="122" y="104">4d</text><text x="168" y="104">4f</text>
-    <text x="30" y="130">5s</text><text x="76" y="130">5p</text><text x="122" y="130">5d</text><text x="168" y="130">5f</text>
-    <text x="30" y="156">6s</text><text x="76" y="156">6p</text><text x="122" y="156">6d</text>
-    <text x="30" y="182">7s</text><text x="76" y="182">7p</text>
+  <defs>
+    <marker id="mo" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 z" fill="var(--accent)"/></marker>
+  </defs>
+  <!-- las diagonales van primero: las etiquetas se dibujan encima y las tapan -->
+  <g stroke="var(--accent)" stroke-width="1.6" opacity=".9" marker-end="url(#mo)">
+    <line x1="72" y1="40" x2="50" y2="56"/>
+    <line x1="118" y1="66" x2="50" y2="104"/>
+    <line x1="164" y1="92" x2="50" y2="156"/>
+    <line x1="210" y1="118" x2="96" y2="180"/>
   </g>
-  <g stroke="var(--accent)" stroke-width="1.6" opacity=".8">
-    <line x1="60" y1="44" x2="24" y2="60"/>
-    <line x1="106" y1="70" x2="24" y2="112"/>
-    <line x1="152" y1="96" x2="24" y2="164"/>
-    <line x1="198" y1="122" x2="60" y2="192"/>
+  <g ${base} font-size="12" font-weight="700" text-anchor="middle">
+    <g fill="var(--bg-soft)">
+      <rect x="16" y="14" width="28" height="18" rx="4"/>
+      <rect x="16" y="40" width="28" height="18" rx="4"/><rect x="62" y="40" width="28" height="18" rx="4"/>
+      <rect x="16" y="66" width="28" height="18" rx="4"/><rect x="62" y="66" width="28" height="18" rx="4"/><rect x="108" y="66" width="28" height="18" rx="4"/>
+      <rect x="16" y="92" width="28" height="18" rx="4"/><rect x="62" y="92" width="28" height="18" rx="4"/><rect x="108" y="92" width="28" height="18" rx="4"/><rect x="154" y="92" width="28" height="18" rx="4"/>
+      <rect x="16" y="118" width="28" height="18" rx="4"/><rect x="62" y="118" width="28" height="18" rx="4"/><rect x="108" y="118" width="28" height="18" rx="4"/><rect x="154" y="118" width="28" height="18" rx="4"/>
+      <rect x="16" y="144" width="28" height="18" rx="4"/><rect x="62" y="144" width="28" height="18" rx="4"/><rect x="108" y="144" width="28" height="18" rx="4"/>
+      <rect x="16" y="170" width="28" height="18" rx="4"/><rect x="62" y="170" width="28" height="18" rx="4"/>
+    </g>
+    <text x="30" y="28">1s</text>
+    <text x="30" y="54">2s</text><text x="76" y="54">2p</text>
+    <text x="30" y="80">3s</text><text x="76" y="80">3p</text><text x="122" y="80">3d</text>
+    <text x="30" y="106">4s</text><text x="76" y="106">4p</text><text x="122" y="106">4d</text><text x="168" y="106">4f</text>
+    <text x="30" y="132">5s</text><text x="76" y="132">5p</text><text x="122" y="132">5d</text><text x="168" y="132">5f</text>
+    <text x="30" y="158">6s</text><text x="76" y="158">6p</text><text x="122" y="158">6d</text>
+    <text x="30" y="184">7s</text><text x="76" y="184">7p</text>
   </g>
-  <text x="230" y="46" ${base} font-size="9" fill="var(--txt-dim)">Se siguen las</text>
-  <text x="230" y="58" ${base} font-size="9" fill="var(--txt-dim)">diagonales, de</text>
-  <text x="230" y="70" ${base} font-size="9" fill="var(--txt-dim)">arriba hacia abajo</text>
-  <text x="230" y="150" ${base} font-size="9" fill="var(--accent)">4s se llena</text>
-  <text x="230" y="162" ${base} font-size="9" fill="var(--accent)">antes que 3d</text>
+  <g ${base} font-size="9" fill="var(--txt-dim)">
+    <text x="212" y="40">Se recorren las</text>
+    <text x="212" y="52">diagonales, de</text>
+    <text x="212" y="64">arriba hacia abajo</text>
+  </g>
+  <text x="212" y="150" ${base} font-size="9" fill="var(--accent)">4s se llena</text>
+  <text x="212" y="162" ${base} font-size="9" fill="var(--accent)">antes que 3d</text>
 </svg>`,
 
   'regla-hund': `
@@ -603,6 +619,164 @@ export const FIGURAS = {
   </text>
   <text x="160" y="160" ${base} font-size="9" text-anchor="middle">
     ¹³₅B y ¹⁴₆C tienen N = 8 los dos → isótonos
+  </text>
+</svg>`,
+
+  // ── Nivel 19: cómo se llegó a la tabla ──────────────────────────
+  'historia-tabla': `
+<svg viewBox="0 0 320 150" role="img" aria-label="Intentos de clasificación: Döbereiner, Newlands, Mendeleiev y Moseley">
+  <line x1="20" y1="72" x2="300" y2="72" stroke="var(--line)" stroke-width="3"/>
+  <g ${base} font-size="8.5" text-anchor="middle">
+    <circle cx="48" cy="72" r="6" fill="var(--accent-2)"/>
+    <text x="48" y="54" font-weight="700">Döbereiner</text>
+    <text x="48" y="42" fill="var(--txt-dim)">1829</text>
+    <text x="48" y="92" fill="var(--txt-dim)">tríadas</text>
+    <text x="48" y="103" fill="var(--txt-dim)">(de a 3)</text>
+
+    <circle cx="128" cy="72" r="6" fill="var(--accent-2)"/>
+    <text x="128" y="54" font-weight="700">Newlands</text>
+    <text x="128" y="42" fill="var(--txt-dim)">1866</text>
+    <text x="128" y="92" fill="var(--txt-dim)">octavas</text>
+    <text x="128" y="103" fill="var(--txt-dim)">(cada 8)</text>
+
+    <circle cx="208" cy="72" r="6" fill="var(--accent)"/>
+    <text x="208" y="54" font-weight="700">Mendeleiev</text>
+    <text x="208" y="42" fill="var(--txt-dim)">1869</text>
+    <text x="208" y="92" fill="var(--txt-dim)">por peso</text>
+    <text x="208" y="103" fill="var(--txt-dim)">atómico</text>
+
+    <circle cx="285" cy="72" r="7" fill="var(--accent)"/>
+    <text x="285" y="54" font-weight="700">Moseley</text>
+    <text x="285" y="42" fill="var(--txt-dim)">1913</text>
+    <text x="285" y="92" fill="var(--accent)">por Z</text>
+  </g>
+  <text x="160" y="130" ${base} font-size="9" text-anchor="middle" fill="var(--txt-dim)">
+    El cambio decisivo: ordenar por número atómico y no por peso
+  </text>
+</svg>`,
+
+  // ── Nivel 20 y 23: la tabla y sus bloques ───────────────────────
+  'tabla-bloques': `
+<svg viewBox="0 0 320 175" role="img" aria-label="Bloques s, p, d y f de la tabla periódica">
+  <g stroke="var(--bg)" stroke-width="1">
+    <rect x="20" y="30" width="30" height="90" fill="var(--accent)" opacity=".75"/>
+    <rect x="20" y="30" width="15" height="15" fill="var(--accent)"/>
+    <rect x="200" y="30" width="90" height="90" fill="var(--accent-2)" opacity=".75"/>
+    <rect x="275" y="30" width="15" height="15" fill="var(--accent-2)"/>
+    <rect x="50" y="60" width="150" height="60" fill="var(--bad)" opacity=".6"/>
+    <rect x="80" y="128" width="140" height="20" fill="#8a6f9e" opacity=".75"/>
+  </g>
+  <g ${base} font-size="13" font-weight="700" text-anchor="middle" fill="var(--txt)">
+    <text x="35" y="82">s</text>
+    <text x="125" y="96">d</text>
+    <text x="245" y="82">p</text>
+    <text x="150" y="143">f</text>
+  </g>
+  <g ${base} font-size="8" text-anchor="middle" fill="var(--txt-dim)">
+    <text x="35" y="164">I A y II A</text>
+    <text x="125" y="164">transición</text>
+    <text x="245" y="164">III A a VIII A</text>
+    <text x="150" y="20">El bloque lo marca el subnivel donde entra el último electrón</text>
+  </g>
+</svg>`,
+
+  // ── Nivel 22: octeto ────────────────────────────────────────────
+  'octeto-lewis': `
+<svg viewBox="0 0 320 170" role="img" aria-label="El sodio pierde un electrón y el azufre gana dos para parecerse a un gas noble">
+  <g ${base} font-size="9" text-anchor="middle">
+    <text x="80" y="22" font-weight="700" fill="var(--accent-2)">METAL: cede</text>
+    <text x="80" y="44" font-size="11">Na → 1s² 2s² 2p⁶ 3s¹</text>
+    <path d="M80 52 L80 70" stroke="var(--accent-2)" stroke-width="2"/>
+    <text x="122" y="66" font-size="8" fill="var(--txt-dim)">pierde 1 e⁻</text>
+    <text x="80" y="84" font-size="11" font-weight="700">Na⁺ → 1s² 2s² 2p⁶</text>
+    <text x="80" y="102" fill="var(--accent-2)">se parece al Ne</text>
+
+    <line x1="160" y1="14" x2="160" y2="120" stroke="var(--line)" stroke-dasharray="3 3"/>
+
+    <text x="240" y="22" font-weight="700" fill="var(--accent)">NO METAL: gana</text>
+    <text x="240" y="44" font-size="10">S → …3s² 3p⁴</text>
+    <path d="M240 52 L240 70" stroke="var(--accent)" stroke-width="2"/>
+    <text x="284" y="66" font-size="8" fill="var(--txt-dim)">gana 2 e⁻</text>
+    <text x="240" y="84" font-size="10" font-weight="700">S²⁻ → …3s² 3p⁶</text>
+    <text x="240" y="102" fill="var(--accent)">se parece al Ar</text>
+  </g>
+  <rect x="30" y="126" width="260" height="32" rx="8" fill="var(--card-hi)"/>
+  <text x="160" y="146" ${base} font-size="9.5" text-anchor="middle">
+    Los dos buscan los 8 electrones del gas noble más cercano
+  </text>
+</svg>`,
+
+  // ── Nivel 24: propiedades periódicas ────────────────────────────
+  'tendencias-periodicas': `
+<svg viewBox="0 0 320 190" role="img" aria-label="Cómo varían las propiedades periódicas en la tabla">
+  <rect x="70" y="40" width="180" height="90" rx="6" fill="var(--card-hi)" stroke="var(--line)"/>
+  <defs>
+    <marker id="fl" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 z" fill="var(--accent)"/></marker>
+    <marker id="fl2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0 0 L7 3.5 L0 7 z" fill="var(--accent-2)"/></marker>
+  </defs>
+  <line x1="90" y1="30" x2="235" y2="30" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#fl)"/>
+  <line x1="58" y1="120" x2="58" y2="50" stroke="var(--accent)" stroke-width="2.5" marker-end="url(#fl)"/>
+  <line x1="264" y1="50" x2="264" y2="120" stroke="var(--accent-2)" stroke-width="2.5" marker-end="url(#fl2)"/>
+  <line x1="235" y1="144" x2="90" y2="144" stroke="var(--accent-2)" stroke-width="2.5" marker-end="url(#fl2)"/>
+  <g ${base} font-size="9">
+    <text x="160" y="16" text-anchor="middle" fill="var(--accent)">electronegatividad · ionización</text>
+    <text x="14" y="86" fill="var(--accent)">EN</text>
+    <text x="276" y="86" fill="var(--accent-2)">radio</text>
+    <text x="160" y="160" text-anchor="middle" fill="var(--accent-2)">radio atómico · carácter metálico</text>
+  </g>
+  <text x="160" y="90" ${base} font-size="10" text-anchor="middle" fill="var(--txt-dim)">TABLA PERIÓDICA</text>
+  <text x="160" y="182" ${base} font-size="9" text-anchor="middle" fill="var(--txt-dim)">
+    El flúor, arriba a la derecha, es el más electronegativo
+  </text>
+</svg>`,
+
+  'radio-ionico': `
+<svg viewBox="0 0 320 155" role="img" aria-label="El catión es más chico y el anión más grande que el átomo neutro">
+  <g ${base} font-size="9" text-anchor="middle">
+    <circle cx="60" cy="62" r="18" fill="var(--accent-2)" opacity=".5" stroke="var(--accent-2)"/>
+    <text x="60" y="96" font-weight="700" fill="var(--accent-2)">catión</text>
+    <text x="60" y="110" font-size="8" fill="var(--txt-dim)">perdió e⁻</text>
+    <text x="60" y="122" font-size="8" fill="var(--txt-dim)">más chico</text>
+
+    <circle cx="160" cy="62" r="30" fill="var(--txt-dim)" opacity=".35" stroke="var(--txt-dim)"/>
+    <text x="160" y="96" font-weight="700">átomo neutro</text>
+
+    <circle cx="262" cy="62" r="42" fill="var(--accent)" opacity=".4" stroke="var(--accent)"/>
+    <text x="262" y="118" font-weight="700" fill="var(--accent)">anión</text>
+    <text x="262" y="132" font-size="8" fill="var(--txt-dim)">ganó e⁻ · más grande</text>
+  </g>
+  <text x="160" y="18" ${base} font-size="9" text-anchor="middle" fill="var(--txt-dim)">
+    Menos electrones → menos repulsión → la nube se contrae
+  </text>
+</svg>`,
+
+  // ── Nivel 25: nutrientes ────────────────────────────────────────
+  nutrientes: `
+<svg viewBox="0 0 320 180" role="img" aria-label="Las plantas absorben los nutrientes como iones de la solución del suelo">
+  <rect x="8" y="112" width="304" height="60" rx="6" fill="#4a3a26"/>
+  <g stroke="var(--accent)" stroke-width="3" fill="none">
+    <path d="M160 112 L160 52"/>
+    <path d="M160 74 L132 56"/><path d="M160 74 L188 56"/>
+    <path d="M160 112 L140 140"/><path d="M160 112 L180 142"/><path d="M160 112 L160 148"/>
+  </g>
+  <ellipse cx="128" cy="50" rx="17" ry="9" fill="var(--accent)" transform="rotate(-20 128 50)"/>
+  <ellipse cx="192" cy="50" rx="17" ry="9" fill="var(--accent)" transform="rotate(20 192 50)"/>
+  <ellipse cx="160" cy="40" rx="15" ry="9" fill="var(--accent)"/>
+  <g ${base} font-size="9" font-weight="700">
+    <text x="18" y="132" fill="var(--accent-2)">NO₃⁻</text>
+    <text x="60" y="158" fill="var(--accent-2)">NH₄⁺</text>
+    <text x="212" y="130" fill="var(--accent-2)">K⁺</text>
+    <text x="248" y="156" fill="var(--accent-2)">Ca²⁺</text>
+    <text x="108" y="166" fill="var(--accent-2)">SO₄²⁻</text>
+    <text x="272" y="132" fill="var(--accent-2)">Mg²⁺</text>
+  </g>
+  <text x="160" y="20" ${base} font-size="9" text-anchor="middle" fill="var(--txt-dim)">
+    No absorben átomos sueltos: absorben iones de la solución del suelo
+  </text>
+  <text x="160" y="106" ${base} font-size="8.5" text-anchor="middle" fill="var(--txt-dim)">
+    y que estén presentes no garantiza que estén disponibles
   </text>
 </svg>`,
 };

@@ -44,7 +44,9 @@ styles.css              estilos, mobile-first, variables CSS
 js/app.js               lógica del juego y navegación entre pantallas
 js/storage.js           progreso en localStorage (estrellas, mejor puntaje, desbloqueo)
 js/sfx.js               sonidos sintetizados (WebAudio) + vibración
-data/levels.js          ⭐ TODO el contenido: niveles y preguntas
+data/levels.js          ⭐ preguntas de cada nivel
+data/teoria.js          ⭐ repaso teórico en pasos, por nivel
+data/figuras.js         figuras SVG de la teoría (sin imágenes externas)
 sw.js                   service worker (juego offline)
 manifest.webmanifest    PWA
 scripts/check.mjs       validador del contenido
@@ -92,6 +94,17 @@ Correr al menos `check` después de tocar contenido y `smoke` después de tocar 
 - Si se cambian archivos del juego, subir la versión de `CACHE` en `sw.js` para que
   los celulares que ya lo abrieron reciban la versión nueva.
 - Skills del proyecto: `agregar-preguntas` (contenido) y `probar-el-juego` (pruebas).
+
+## Teoría de los niveles
+
+Cada nivel puede tener un repaso en `TEORIA` (`data/teoria.js`), como array de
+pasos con `titulo`, `texto` (HTML simple), y opcionalmente `figura`, `dato` y
+`ejemplo`. El botón del libro aparece solo si el nivel tiene entrada ahí.
+
+Las figuras van en `data/figuras.js`, escritas a mano en SVG: usan las variables
+de la paleta (`var(--accent)`, `var(--txt-dim)`…) y un `viewBox` para escalar.
+No se pueden usar imágenes externas —la red bloquea los CDN y el juego tiene que
+andar sin conexión—, así que cualquier diagrama nuevo se dibuja acá.
 
 ## Deploy
 

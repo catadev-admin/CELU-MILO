@@ -1,7 +1,8 @@
 # ⚛️ Química Quest
 
 Juego de niveles para repasar **química general e inorgánica** en sistemas agropecuarios
-y ciencias ambientales. 29 niveles, 240 preguntas, hecho para jugar desde el celular.
+y ciencias ambientales. 29 niveles, 240 preguntas y 130 pasos de teoría con 28 figuras, hecho para jugar
+desde el celular.
 
 El contenido sale de la lámina de la materia, de los **apuntes de cátedra** y de los
 **Trabajos Prácticos de Aula** de los temas 1 (estructura de la materia) y 2 (elementos
@@ -11,13 +12,15 @@ químicos).
 
 1. **Carpetas por unidad**: entrás a la unidad que estés cursando y elegís cualquiera de
    sus niveles, en el orden que quieras. No hay niveles bloqueados.
-2. Dentro del nivel tenés **3 vidas** ❤️❤️❤️ y preguntas de opción múltiple,
+2. Cada nivel tiene un **repaso teórico** 📖 en pasos, con figuras y ejemplos
+   resueltos, que se puede leer antes de jugar o después de un tropiezo.
+3. Dentro del nivel tenés **3 vidas** ❤️❤️❤️ y preguntas de opción múltiple,
    verdadero/falso y de cálculo.
-3. Cada respuesta muestra **la explicación**, así que se aprende aunque te equivoques.
-4. Al terminar ganás estrellas: **60 % → ⭐, 80 % → ⭐⭐, 100 % → ⭐⭐⭐**.
-5. Las preguntas y las opciones se mezclan en cada partida, así que repetir un nivel
+4. Cada respuesta muestra **la explicación**, así que se aprende aunque te equivoques.
+5. Al terminar ganás estrellas: **60 % → ⭐, 80 % → ⭐⭐, 100 % → ⭐⭐⭐**.
+6. Las preguntas y las opciones se mezclan en cada partida, así que repetir un nivel
    nunca es igual.
-6. El progreso queda guardado en el teléfono.
+7. El progreso queda guardado en el teléfono.
 
 ## Los niveles
 

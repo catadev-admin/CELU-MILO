@@ -58,6 +58,33 @@ Es la forma de escribir <sup>14</sup><sub>6</sub>C, p<sup>+</sup>, 2p<sup>3</sup
 - Los decimales se escriben con coma en los textos (35,45 u) pero el campo `answer`
   de las `num` es un número JS con punto (`35.45`).
 
+## Teoría del nivel
+
+El repaso teórico vive aparte, en `data/teoria.js`, indexado por id de nivel:
+
+```js
+19: [
+  {
+    titulo: 'El problema de ordenar',
+    texto: `<p>HTML simple: <b>, <ul>, <sup>, <sub>…</p>`,
+    figura: 'historia-tabla',      // opcional, tiene que existir en data/figuras.js
+    dato: 'Frase corta para recordar',   // opcional, se muestra destacada
+    ejemplo: {                            // opcional, para pasos con cálculo
+      enunciado: '…',
+      pasos: ['…', '…'],
+      resultado: '…',
+    },
+  },
+]
+```
+
+Cuatro o cinco pasos por nivel es una buena medida. Conviene que al menos uno
+tenga figura y que los niveles con cálculo tengan un ejemplo resuelto.
+
+Las figuras se dibujan **a mano en SVG** en `data/figuras.js`: no hay imágenes
+externas porque la red bloquea los CDN y el juego funciona sin conexión. Usá las
+variables de la paleta y un `viewBox` de ancho 320 para que escalen bien.
+
 ## Después de editar, siempre
 
 ```bash
