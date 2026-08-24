@@ -3,6 +3,8 @@
 // Uso: node scripts/check.mjs
 
 import { LEVELS } from '../data/levels.js';
+import { TEORIA } from '../data/teoria.js';
+import { FIGURAS } from '../data/figuras.js';
 
 const errors = [];
 const warnings = [];
@@ -69,6 +71,38 @@ LEVELS.forEach((lvl, li) => {
   });
 });
 
+// ── teoría ──
+const idsValidos = new Set(LEVELS.map((l) => l.id));
+let totalPasos = 0;
+for (const [id, pasos] of Object.entries(TEORIA)) {
+  const at = `teoría del nivel ${id}`;
+  if (!idsValidos.has(Number(id))) errors.push(`${at}: no existe ese nivel.`);
+  if (!Array.isArray(pasos) || pasos.length === 0) {
+    errors.push(`${at}: tiene que ser un array de pasos.`);
+    continue;
+  }
+  totalPasos += pasos.length;
+  pasos.forEach((paso, i) => {
+    const donde = `${at}, paso ${i + 1}`;
+    if (!paso.titulo) errors.push(`${donde}: falta "titulo".`);
+    if (!paso.texto) errors.push(`${donde}: falta "texto".`);
+    if (paso.figura && !FIGURAS[paso.figura]) {
+      errors.push(`${donde}: la figura "${paso.figura}" no existe en data/figuras.js.`);
+    }
+    if (paso.ejemplo) {
+      const e = paso.ejemplo;
+      if (!e.enunciado || !e.resultado || !Array.isArray(e.pasos) || !e.pasos.length) {
+        errors.push(`${donde}: el ejemplo necesita "enunciado", "pasos" (array) y "resultado".`);
+      }
+    }
+  });
+}
+
+const sinUsar = Object.keys(FIGURAS).filter(
+  (f) => !Object.values(TEORIA).flat().some((p) => p.figura === f));
+sinUsar.forEach((f) => warnings.push(`la figura "${f}" no la usa ningún paso.`));
+
+const conTeoria = Object.keys(TEORIA).length;
 const totalQ = LEVELS.reduce((n, l) => n + (l.questions?.length || 0), 0);
 
 warnings.forEach((w) => console.log(`⚠️  ${w}`));
@@ -80,3 +114,5 @@ if (errors.length) {
 }
 
 console.log(`✅ Contenido OK: ${LEVELS.length} niveles, ${totalQ} preguntas.`);
+console.log(`   Teoría: ${conTeoria}/${LEVELS.length} niveles, ${totalPasos} pasos, ` +
+  `${Object.keys(FIGURAS).length} figuras.`);

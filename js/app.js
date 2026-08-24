@@ -1,4 +1,6 @@
 import { LEVELS, TEMAS } from '../data/levels.js';
+import { TEORIA, tieneTeoria } from '../data/teoria.js';
+import { figura } from '../data/figuras.js';
 import { loadProgress, saveLevelResult, resetProgress, totalStars } from './storage.js';
 import { sfx } from './sfx.js';
 
@@ -110,23 +112,75 @@ function renderMap() {
     const stars = progress[lvl.id]?.stars || 0;
     const best = progress[lvl.id]?.best || 0;
 
-    const btn = document.createElement('button');
-    btn.className = 'level';
-    btn.style.setProperty('--lvl', lvl.color);
-    btn.innerHTML = `
-      <div class="level__icon" aria-hidden="true">${lvl.icon}</div>
-      <div class="level__body">
-        <div class="level__name">${lvl.id}. ${lvl.title}</div>
-        <div class="level__sub">${lvl.subtitle}</div>
-        ${best ? `<div class="level__best">Mejor puntaje: ${best}</div>` : ''}
-      </div>
-      <div class="level__stars" role="img" aria-label="${stars} de 3 estrellas">${starsRow(stars)}</div>`;
-    btn.addEventListener('click', () => {
+    const fila = document.createElement('div');
+    fila.className = 'level';
+    fila.style.setProperty('--lvl', lvl.color);
+
+    const jugar = document.createElement('button');
+    jugar.className = 'level__play';
+    jugar.innerHTML = `
+      <span class="level__icon" aria-hidden="true">${lvl.icon}</span>
+      <span class="level__body">
+        <span class="level__name">${lvl.id}. ${lvl.title}</span>
+        <span class="level__sub">${lvl.subtitle}</span>
+        <span class="level__meta">
+          <span class="level__stars" role="img" aria-label="${stars} de 3 estrellas">${starsRow(stars)}</span>
+          ${best ? `<span class="level__best">Mejor: ${best}</span>` : ''}
+        </span>
+      </span>`;
+    jugar.addEventListener('click', () => {
       sfx.tap();
       startLevel(lvl.id);
     });
-    cont.appendChild(btn);
+    fila.appendChild(jugar);
+
+    if (tieneTeoria(lvl.id)) {
+      const teo = document.createElement('button');
+      teo.className = 'level__theory';
+      teo.innerHTML = '<span aria-hidden="true">📖</span>';
+      teo.setAttribute('aria-label', `Ver la teoría del nivel ${lvl.id}: ${lvl.title}`);
+      teo.addEventListener('click', () => {
+        sfx.tap();
+        abrirTeoria(lvl);
+      });
+      fila.appendChild(teo);
+    }
+
+    cont.appendChild(fila);
   });
+}
+
+/* ══════════ Teoría del nivel ══════════ */
+let teoria = { nivel: null, pasos: [], i: 0 };
+
+function abrirTeoria(lvl) {
+  teoria = { nivel: lvl, pasos: TEORIA[lvl.id] || [], i: 0 };
+  $('#theory-title').textContent = `Nivel ${lvl.id} · ${lvl.title}`;
+  renderTeoria();
+  show('theory');
+}
+
+function renderTeoria() {
+  const paso = teoria.pasos[teoria.i];
+  const ultimo = teoria.i === teoria.pasos.length - 1;
+
+  $('#theory-count').textContent = `${teoria.i + 1} / ${teoria.pasos.length}`;
+  $('#teoria').innerHTML = `
+    <h3 class="teoria__titulo">${paso.titulo}</h3>
+    ${paso.figura ? `<figure class="teoria__figura">${figura(paso.figura)}</figure>` : ''}
+    <div class="teoria__texto">${paso.texto}</div>
+    ${paso.ejemplo ? `
+      <div class="ejemplo">
+        <div class="ejemplo__tag">Ejemplo resuelto</div>
+        <p class="ejemplo__enunciado">${paso.ejemplo.enunciado}</p>
+        <ol class="ejemplo__pasos">${paso.ejemplo.pasos.map((x) => `<li>${x}</li>`).join('')}</ol>
+        <p class="ejemplo__resultado">${paso.ejemplo.resultado}</p>
+      </div>` : ''}
+    ${paso.dato ? `<p class="dato"><b>Para recordar:</b> ${paso.dato}</p>` : ''}`;
+
+  $('#btn-theory-prev').disabled = teoria.i === 0;
+  $('#btn-theory-next').textContent = ultimo ? 'Jugar el nivel' : 'Siguiente';
+  window.scrollTo(0, 0);
 }
 
 /* ══════════ Partida ══════════ */
@@ -299,6 +353,7 @@ function finishLevel(outOfLives) {
     : 'Reintentar';
   mainBtn.dataset.action = passed ? (ultimoDeLaUnidad ? 'map' : 'next') : 'retry';
   $('#btn-result-retry').style.display = passed ? 'block' : 'none';
+  $('#btn-result-theory').style.display = tieneTeoria(game.level.id) ? 'block' : 'none';
 
   passed ? sfx.win() : sfx.lose();
   show('result');
@@ -368,6 +423,25 @@ $('#btn-result-main').addEventListener('click', (e) => {
   if (action === 'retry') return startLevel(game.level.id);
   renderMap();
   show('map');
+});
+
+$('#btn-theory-prev').addEventListener('click', () => {
+  if (teoria.i === 0) return;
+  sfx.tap();
+  teoria.i--;
+  renderTeoria();
+});
+
+$('#btn-theory-next').addEventListener('click', () => {
+  sfx.tap();
+  if (teoria.i === teoria.pasos.length - 1) return startLevel(teoria.nivel.id);
+  teoria.i++;
+  renderTeoria();
+});
+
+$('#btn-result-theory').addEventListener('click', () => {
+  sfx.tap();
+  abrirTeoria(game.level);
 });
 
 $('#btn-result-retry').addEventListener('click', () => {

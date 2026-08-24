@@ -58,6 +58,22 @@
     <div class="levels" id="levels"></div>
   </section>
 
+  <!-- ══════════ TEORÍA DEL NIVEL ══════════ -->
+  <section class="screen" id="screen-theory" aria-label="Teoría del nivel">
+    <header class="topbar">
+      <button class="icon-btn" data-go="map" aria-label="Volver a los niveles">←</button>
+      <h2 id="theory-title">Teoría</h2>
+      <div class="topbar__stars" id="theory-count">1 / 1</div>
+    </header>
+
+    <div class="teoria" id="teoria" aria-live="polite"></div>
+
+    <div class="teoria__nav">
+      <button class="btn btn--ghost" id="btn-theory-prev">Anterior</button>
+      <button class="btn btn--primary" id="btn-theory-next">Siguiente</button>
+    </div>
+  </section>
+
   <!-- ══════════ JUEGO ══════════ -->
   <section class="screen" id="screen-play" aria-label="Partida">
     <header class="topbar topbar--play">
@@ -109,6 +125,7 @@
 
       <button class="btn btn--primary btn--big" id="btn-result-main">Siguiente nivel</button>
       <button class="btn btn--ghost" id="btn-result-retry">Reintentar</button>
+      <button class="btn btn--ghost" id="btn-result-theory">Repasar la teoría</button>
       <button class="btn btn--ghost" data-go="map">Volver al mapa</button>
     </div>
   </section>

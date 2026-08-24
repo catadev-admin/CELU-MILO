@@ -138,11 +138,52 @@ async function main() {
     check('la carpeta abre los niveles de esa unidad', levels === esperados,
       `${levels} de ${esperados}`);
     check('ningún nivel queda bloqueado',
-      await evaluate('[...document.querySelectorAll(".level")].every((b) => !b.disabled)'));
+      await evaluate('[...document.querySelectorAll(".level__play")].every((b) => !b.disabled)'));
     await shot('2b-mapa');
 
+    // ── teoría del nivel ──
+    const pasosTeoria = await evaluate(
+      `(async()=>{const m=await import('/data/teoria.js');return (m.TEORIA[1]||[]).length})()`, true);
+    check('el nivel 1 tiene teoría cargada', pasosTeoria > 0, `${pasosTeoria} pasos`);
+
+    await evaluate('document.querySelectorAll(".level__theory")[0].click()');
+    await sleep(300);
+    check('el botón del libro abre la teoría',
+      await evaluate('document.querySelector("#screen-theory").classList.contains("is-active")'));
+    check('el botón Anterior arranca deshabilitado',
+      await evaluate('document.querySelector("#btn-theory-prev").disabled'));
+
+    let conFigura = 0;
+    let recorridos = 0;
+    for (let i = 0; i < pasosTeoria; i++) {
+      recorridos++;
+      if (await evaluate('!!document.querySelector(".teoria__figura svg")')) conFigura++;
+      const contador = await evaluate('document.querySelector("#theory-count").textContent');
+      if (contador !== `${i + 1} / ${pasosTeoria}`) {
+        check('el contador de pasos acompaña', false, contador);
+        break;
+      }
+      if (i === 1) await shot('7-teoria');
+      if (i < pasosTeoria - 1) {
+        await evaluate('document.querySelector("#btn-theory-next").click()');
+        await sleep(220);
+      }
+    }
+    check('la teoría recorre todos sus pasos', recorridos === pasosTeoria,
+      `${recorridos} de ${pasosTeoria}`);
+    check('la teoría incluye figuras', conFigura > 0, `${conFigura} pasos con figura`);
+    check('el último paso invita a jugar',
+      (await evaluate('document.querySelector("#btn-theory-next").textContent')).includes('Jugar'));
+
+    await evaluate('document.querySelector("#btn-theory-next").click()');
+    await sleep(300);
+    check('desde la teoría se entra directo al nivel',
+      await evaluate('document.querySelector("#screen-play").classList.contains("is-active")'));
+    await evaluate('document.querySelector("#btn-quit").click()');
+    await sleep(300);
+
     // ── jugar el nivel 1 respondiendo todo bien ──
-    await evaluate('document.querySelectorAll(".level")[0].click()');
+    await evaluate('document.querySelectorAll(".level__play")[0].click()');
     await sleep(300);
     check('arranca con 3 vidas', await evaluate('document.querySelectorAll("#lives .off").length === 0'));
     await shot('3-pregunta');
@@ -221,7 +262,7 @@ async function main() {
     await evaluate('document.querySelectorAll(".unit")[0].click()');
     await sleep(400);
     check('el nivel jugado conserva sus estrellas',
-      await evaluate('document.querySelectorAll(".level")[0].querySelectorAll(".on").length === 3'));
+      await evaluate('document.querySelectorAll(".level__play")[0].querySelectorAll(".on").length === 3'));
     await shot('5-mapa-progreso');
 
     // ── sin scroll horizontal ──
@@ -258,7 +299,7 @@ async function main() {
       await sleep(400);
       await evaluate(`document.querySelectorAll('.unit')[${nivelNum.tema}].click()`);
       await sleep(400);
-      await evaluate(`document.querySelectorAll('.level')[${nivelNum.dentro}].click()`);
+      await evaluate(`document.querySelectorAll('.level__play')[${nivelNum.dentro}].click()`);
       await sleep(300);
 
       // Busca una pregunta de cálculo y revisa el botón antes de contestarla.
@@ -285,7 +326,7 @@ async function main() {
       // Vuelve a empezar el nivel y ahora sí lo juega entero.
       await evaluate('document.querySelector("#btn-quit").click()');
       await sleep(300);
-      await evaluate(`document.querySelectorAll('.level')[${nivelNum.dentro}].click()`);
+      await evaluate(`document.querySelectorAll('.level__play')[${nivelNum.dentro}].click()`);
       await sleep(300);
       await jugarNivel(nivelNum.global);
       await sleep(300);
@@ -303,7 +344,7 @@ async function main() {
     await sleep(400);
     const primeras = new Set();
     for (let i = 0; i < 6; i++) {
-      await evaluate('document.querySelectorAll(".level")[0].click()');
+      await evaluate('document.querySelectorAll(".level__play")[0].click()');
       await sleep(220);
       primeras.add(await evaluate('document.querySelector("#question").innerHTML'));
       await evaluate('document.querySelector("#btn-quit").click()');
@@ -314,7 +355,7 @@ async function main() {
 
     const ordenOpciones = new Set();
     for (let i = 0; i < 6; i++) {
-      await evaluate('document.querySelectorAll(".level")[0].click()');
+      await evaluate('document.querySelectorAll(".level__play")[0].click()');
       await sleep(220);
       ordenOpciones.add(await evaluate(
         '[...document.querySelectorAll(".option")].map((o) => o.textContent).join("|")'));
