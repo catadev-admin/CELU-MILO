@@ -662,6 +662,332 @@ export const TEORIA = {
         Muchos son perfectamente estables.</p>`,
     },
   ],
+
+  // ══════════════════════════════ NIVEL 13 ═════════════════════════════
+  13: [
+    {
+      titulo: 'Por qué las masas no son enteras',
+      texto: `<p>Si mirás una tabla periódica, la masa del cloro es <b>35,45 u</b>. Pero un
+        átomo de cloro tiene 17 protones y 18 o 20 neutrones: siempre un número entero de
+        partículas. ¿De dónde sale el 0,45?</p>
+        <p>De que la tabla no informa la masa de <b>un</b> átomo, sino el promedio de todos
+        los átomos de ese elemento que hay en la naturaleza.</p>`,
+    },
+    {
+      titulo: 'Promedio ponderado',
+      texto: `<p>La <b>masa atómica promedio</b> es el promedio de las masas de los isótopos
+        <b>pesado según su abundancia natural</b>. No es un promedio común: cada isótopo
+        pesa en la cuenta según cuán frecuente sea.</p>
+        <p style="text-align:center"><b>M̄ = Σ (M<sub>i</sub> × %abundancia<sub>i</sub>) / 100</b></p>`,
+      figura: 'masa-promedio',
+    },
+    {
+      titulo: 'El cálculo, paso a paso',
+      texto: `<p>Veamos el caso del cloro con los datos de la lámina.</p>`,
+      ejemplo: {
+        enunciado: 'El cloro tiene ³⁵Cl (34,96885 u; 75,78 %) y ³⁷Cl (36,96590 u; 24,22 %). Calculá su masa atómica promedio.',
+        pasos: [
+          'Multiplicá cada masa por su abundancia: 34,96885 × 75,78 = 2649,93.',
+          'Y el otro isótopo: 36,96590 × 24,22 = 895,32.',
+          'Sumá: 2649,93 + 895,32 = 3545,25.',
+          'Dividí por 100: 3545,25 / 100 = 35,45.',
+        ],
+        resultado: 'M̄(Cl) = 35,45 u. Queda cerca de 35 porque el ³⁵Cl es mucho más abundante.',
+      },
+    },
+    {
+      titulo: 'Cómo controlar el resultado',
+      texto: `<p>Antes de dar por buena la cuenta, hacé esta verificación mental: el
+        resultado <b>tiene que caer entre</b> la masa del isótopo más liviano y la del más
+        pesado, y <b>más cerca del más abundante</b>.</p>
+        <p>Si te da 36,5 para el cloro, algo salió mal: el isótopo dominante es el de 35.</p>`,
+      dato: 'La masa atómica promedio se expresa en u, nunca en gramos.',
+    },
+    {
+      titulo: 'Para qué sirve',
+      texto: `<p>La masa atómica promedio está relacionada con <b>propiedades físicas</b>
+        como la densidad y los puntos de fusión y ebullición, y por eso influye en procesos
+        naturales y tecnológicos.</p>
+        <p>Es también la base de las diferencias de masa que permiten usar isótopos como
+        <b>trazadores</b> en suelos, alimentos y aguas.</p>`,
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 14 ═════════════════════════════
+  14: [
+    {
+      titulo: 'Núcleos que no aguantan',
+      texto: `<p>Algunos núcleos son <b>inestables</b> y se transforman espontáneamente,
+        emitiendo radiación en el proceso. Eso es la <b>radiactividad</b>, el fenómeno que
+        observó Becquerel en 1896.</p>
+        <p>Es un fenómeno <b>nuclear</b>: no depende de los electrones ni de con qué esté
+        combinado el átomo. Por eso no se puede “apagar” con una reacción química.</p>`,
+    },
+    {
+      titulo: 'Los tipos de emisión',
+      texto: `<table class="tabla">
+          <tr><th>Tipo</th><th>Qué es</th><th>Notación</th></tr>
+          <tr><td>α</td><td>2 protones + 2 neutrones (núcleo de helio)</td><td>⁴₂He</td></tr>
+          <tr><td>β⁻</td><td>electrón muy veloz</td><td>⁰₋₁e</td></tr>
+          <tr><td>β⁺</td><td>positrón (como el electrón, pero +)</td><td>⁰₊₁e</td></tr>
+          <tr><td>γ</td><td>fotón de alta energía, sin masa ni carga</td><td>γ</td></tr>
+        </table>
+        <p>Las α tienen carga positiva y son las más pesadas; las γ no son partículas sino
+        radiación electromagnética, con mucha más energía que la luz visible.</p>`,
+    },
+    {
+      titulo: 'Poder de penetración',
+      texto: `<p>Cuanto más penetrante es una radiación, más blindaje hace falta. Las
+        <b>menos</b> penetrantes son las α: las frena una hoja de papel o la propia piel.
+        Las <b>más</b> penetrantes son las γ y las radiaciones neutrónicas, que necesitan
+        plomo u hormigón.</p>`,
+      figura: 'radiaciones',
+      dato: 'α ← papel · β ← aluminio · γ ← plomo u hormigón',
+    },
+    {
+      titulo: 'Qué pasa con el núcleo',
+      texto: `<p>En la emisión <b>β⁻</b>, un neutrón del núcleo se transforma en protón. El
+        número atómico sube en 1, pero la cantidad total de nucleones no cambia: <b>A se
+        mantiene</b>.</p>`,
+      figura: 'desintegracion-beta',
+    },
+    {
+      titulo: 'Cómo se evalúa el riesgo',
+      texto: `<p>Decir que algo “es radiactivo” no alcanza para saber si es peligroso.
+        Hay que considerar:</p>
+        <ul>
+          <li>el <b>tipo</b> y la <b>energía</b> de la radiación;</li>
+          <li>la <b>actividad</b> de la fuente y la <b>cantidad</b> de material;</li>
+          <li>el <b>período de semidesintegración</b>;</li>
+          <li>la <b>vía de exposición</b> y el <b>tiempo de contacto</b>;</li>
+          <li>la posibilidad de que se <b>incorpore al organismo</b>.</li>
+        </ul>
+        <p>Y hay que distinguir siempre entre un <b>isótopo estable</b>, que no emite nada, y
+        un <b>radioisótopo</b>, cuyo núcleo se transforma espontáneamente.</p>`,
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 15 ═════════════════════════════
+  15: [
+    {
+      titulo: 'Dos caminos desde el átomo',
+      texto: `<p>La estructura atómica se aplica en el agro por dos vías distintas pero
+        relacionadas:</p>
+        <ul>
+          <li>Por el <b>núcleo</b>: identifica al elemento y distingue sus isótopos. De acá
+              salen los trazadores y las técnicas con radiación.</li>
+          <li>Por los <b>electrones</b>: sobre todo los de valencia, que condicionan la
+              formación de iones, los enlaces y la reactividad. De acá sale casi toda la
+              química del suelo y de los alimentos.</li>
+        </ul>`,
+    },
+    {
+      titulo: 'Las plantas comen iones',
+      texto: `<p>Los cultivos no incorporan los elementos como átomos sueltos, sino
+        principalmente como <b>iones o moléculas</b> presentes en la solución del suelo: el
+        nitrógeno como NO<sub>3</sub><sup>−</sup> o NH<sub>4</sub><sup>+</sup>, el potasio
+        como K<sup>+</sup>, el calcio como Ca<sup>2+</sup>.</p>
+        <p>Por eso <b>no alcanza</b> con decir que un suelo “tiene hierro” o “tiene
+        fósforo”. Hay que preguntar en qué forma química está y bajo qué condiciones puede
+        ser retenido, movilizado o absorbido. Intervienen el pH, la humedad, la solubilidad,
+        la materia orgánica y los microorganismos.</p>`,
+      dato: 'Presencia total no es lo mismo que disponibilidad.',
+    },
+    {
+      titulo: 'Trazadores: seguirle el rastro',
+      texto: `<p>Un <b>trazador</b> permite seguir el recorrido de una sustancia dentro de un
+        sistema sin cambiar su comportamiento químico.</p>
+        <ul>
+          <li>El <b>fósforo-32</b> sirve para estudiar cómo se desplaza el fósforo de un
+              fertilizante desde el suelo hacia las raíces.</li>
+          <li>El <b>nitrógeno-15</b>, que es <b>estable y no radiactivo</b>, permite saber
+              qué proporción del fertilizante fue absorbida, cuánta quedó en el suelo y
+              cuánta se perdió. También sirve para estudiar la fijación biológica.</li>
+        </ul>`,
+      figura: 'trazador',
+    },
+    {
+      titulo: 'Radiación aplicada al campo',
+      texto: `<ul>
+          <li><b>Técnica del insecto estéril</b>: se crían insectos plaga, se los esteriliza
+              con una dosis controlada de radiación y se los libera. Al aparearse no dejan
+              descendencia. Los insectos liberados <b>no</b> quedan radiactivos.</li>
+          <li><b>Mejoramiento vegetal</b>: irradiar semillas produce modificaciones
+              <b>al azar</b> en el material genético. La radiación no crea una variedad
+              mejor: genera diversidad, y después hay que cultivar, evaluar y seleccionar.</li>
+          <li><b>Erosión y sedimentos</b>: algunos radionucleidos ambientales permiten
+              estimar el movimiento de partículas del suelo.</li>
+        </ul>`,
+    },
+    {
+      titulo: 'Irradiado no es contaminado',
+      texto: `<p>La <b>irradiación de alimentos</b> los expone, en condiciones controladas, a
+        radiación gamma, rayos X o haces de electrones. Según la dosis puede reducir
+        patógenos, controlar insectos, retrasar la maduración y alargar la vida útil.</p>
+        <p>Un alimento <b>irradiado</b> recibió energía en un proceso tecnológico. Un
+        alimento <b>contaminado</b> tiene radionucleidos incorporados accidentalmente. La
+        irradiación bien aplicada <b>no</b> vuelve radiactivo al alimento.</p>`,
+      figura: 'irradiado-vs-contaminado',
+    },
+    {
+      titulo: 'Alimentos y ambiente',
+      texto: `<p>Las proporciones naturales de <b>isótopos estables</b> funcionan como una
+        “huella química”: permiten conocer el origen geográfico de un alimento o detectar
+        adulteraciones, sin agregarle nada.</p>
+        <p>En ambiente, los isótopos del hidrógeno y del oxígeno del agua informan sobre su
+        procedencia, las zonas de recarga de acuíferos y la evaporación; los del carbono y
+        el nitrógeno ayudan a estudiar ciclos y contaminantes.</p>`,
+      dato: 'No basta con preguntar qué elemento hay: importa en qué forma, en qué cantidad y en qué condiciones.',
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 16 ═════════════════════════════
+  16: [
+    {
+      titulo: 'La receta de los tres números',
+      texto: `<p>Casi todos los ejercicios del TP arrancan igual: te dan un símbolo con
+        números y hay que decir cuántas partículas tiene. Con estos tres pasos salen
+        todos.</p>`,
+      figura: 'receta-particulas',
+    },
+    {
+      titulo: 'Escribir la notación',
+      texto: `<p>Para representar un átomo se usa el símbolo del elemento con el
+        <b>número másico arriba</b> a la izquierda y el <b>número atómico abajo</b> a la
+        izquierda. Si es un ion, la carga va arriba a la derecha.</p>
+        <p>Con el fósforo de masa atómica 31 y número atómico 15 queda
+        <b><sup>31</sup><sub>15</sub>P</b>. Un error típico es invertirlos: el número grande
+        siempre va arriba, porque incluye protones <b>y</b> neutrones.</p>`,
+      ejemplo: {
+        enunciado: 'Una especie química X tiene 8 protones, 8 neutrones y 10 electrones. ¿Cuál es?',
+        pasos: [
+          'Z = protones = 8 → es el oxígeno.',
+          'A = protones + neutrones = 8 + 8 = 16.',
+          'Tiene 2 electrones más que protones → carga −2.',
+        ],
+        resultado: 'Es el ion óxido: ¹⁶₈O²⁻.',
+      },
+    },
+    {
+      titulo: 'Los tres verdadero/falso clásicos',
+      texto: `<ul>
+          <li>“El núcleo tiene la mayor parte de la masa <b>y del volumen</b>” → <b>falso</b>.
+              La masa sí (≈ 99,95 %), el volumen no: el átomo es casi todo espacio vacío.</li>
+          <li>“Todos los átomos de un elemento tienen el mismo número de protones” →
+              <b>verdadero</b>. Es lo que define al elemento.</li>
+          <li>“El número de electrones es igual al de neutrones” → <b>falso</b>. En un átomo
+              neutro es igual al de <b>protones</b>.</li>
+        </ul>`,
+      dato: 'Cuando un enunciado mezcla masa con volumen, desconfiá.',
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 17 ═════════════════════════════
+  17: [
+    {
+      titulo: 'Primero calculá N',
+      texto: `<p>Los ejercicios te dan listas de núclidos y piden agruparlos. La forma de no
+        equivocarse es siempre la misma: antes de comparar nada, calculá
+        <b>N = A − Z</b> para cada uno y anotalo al lado.</p>
+        <p>Recién con los tres números a la vista (Z, A y N) se ve qué comparten.</p>`,
+      figura: 'clasificar-nuclidos',
+    },
+    {
+      titulo: 'Un ejemplo con la lista del TP',
+      texto: `<p>Tomemos <sup>12</sup><sub>7</sub>N, <sup>13</sup><sub>5</sub>B,
+        <sup>13</sup><sub>7</sub>N, <sup>14</sup><sub>6</sub>C, <sup>14</sup><sub>7</sub>N y
+        <sup>17</sup><sub>9</sub>F.</p>`,
+      ejemplo: {
+        enunciado: 'Agrupá esos seis núclidos en isótopos, isóbaros e isótonos.',
+        pasos: [
+          'Calculá N: ¹²N → 5; ¹³B → 8; ¹³N → 6; ¹⁴C → 8; ¹⁴N → 7; ¹⁷F → 8.',
+          'Isótopos (igual Z): los tres con Z = 7 → ¹²N, ¹³N y ¹⁴N.',
+          'Isóbaros (igual A): ¹³B con ¹³N, y ¹⁴C con ¹⁴N.',
+          'Isótonos (igual N): ¹³B, ¹⁴C y ¹⁷F, los tres con 8 neutrones.',
+        ],
+        resultado: 'Un mismo núclido puede entrar en más de un grupo según con quién se lo compare.',
+      },
+    },
+    {
+      titulo: 'Núclidos de uso agronómico',
+      texto: `<p>El TP usa núclidos que aparecen en conservación de alimentos y en
+        mejoramiento de cultivos. Conviene tener a mano sus Z:</p>
+        <table class="tabla">
+          <tr><th>Núclido</th><th>Z</th><th>N = A − Z</th></tr>
+          <tr><td>Cobalto-60</td><td>27</td><td>33</td></tr>
+          <tr><td>Cesio-137</td><td>55</td><td>82</td></tr>
+          <tr><td>Fósforo-32</td><td>15</td><td>17</td></tr>
+          <tr><td>Yodo-131</td><td>53</td><td>78</td></tr>
+          <tr><td>Nitrógeno-15</td><td>7</td><td>8</td></tr>
+        </table>`,
+    },
+    {
+      titulo: 'Escribir el símbolo al revés',
+      texto: `<p>Otros ejercicios van en sentido inverso: te dan el elemento y una condición,
+        y hay que armar el símbolo.</p>
+        <ul>
+          <li>“El núclido de hafnio con 107 neutrones”: Z = 72, entonces
+              A = 72 + 107 = 179 → <sup>179</sup><sub>72</sub>Hf.</li>
+          <li>“El núclido de silicio con igual cantidad de protones y neutrones”: Z = 14 y
+              N = 14, entonces A = 28 → <sup>28</sup><sub>14</sub>Si.</li>
+        </ul>`,
+      dato: 'A = Z + N sirve para los dos lados: para contar y para construir.',
+    },
+  ],
+
+  // ══════════════════════════════ NIVEL 18 ═════════════════════════════
+  18: [
+    {
+      titulo: 'Leer un problema de aplicación',
+      texto: `<p>Los problemas del final del TP mezclan química con una situación real. La
+        estrategia es separar las dos capas:</p>
+        <ul>
+          <li>El <b>contexto</b>: qué se quiere lograr y con qué técnica.</li>
+          <li>Los <b>datos</b>: los núclidos, sus Z y A, las ecuaciones.</li>
+        </ul>
+        <p>Casi siempre la pregunta se responde con lo que ya sabés: contar partículas,
+        clasificar una relación entre núclidos o explicar por qué algo no se vuelve
+        radiactivo.</p>`,
+    },
+    {
+      titulo: 'El caso del cobalto-60',
+      texto: `<p>Una planta irradia pimienta con una fuente sellada de cobalto-60. La fuente
+        <b>permanece separada</b> del alimento: sólo lo atraviesa la radiación gamma, que
+        deposita energía y daña el material genético de insectos y microorganismos.</p>
+        <p>El núcleo del <sup>60</sup>Co es inestable y se desintegra emitiendo β⁻, dando
+        níquel-60 en estado excitado, que libera el exceso de energía como radiación γ.</p>`,
+      figura: 'desintegracion-beta',
+      ejemplo: {
+        enunciado: '¿Qué relación hay entre el ⁶⁰₂₇Co y el ⁶⁰₂₈Ni?',
+        pasos: [
+          'Co: Z = 27, A = 60 → N = 33.',
+          'Ni: Z = 28, A = 60 → N = 32.',
+          'Comparten A pero tienen distinto Z.',
+        ],
+        resultado: 'Son isóbaros: elementos diferentes con el mismo número másico.',
+      },
+    },
+    {
+      titulo: 'El fertilizante marcado',
+      texto: `<p>Se aplica a un cultivo un fertilizante enriquecido con <sup>15</sup>N. El
+        <sup>14</sup>N y el <sup>15</sup>N son <b>isótopos</b>: mismo Z, misma configuración
+        electrónica si son neutros, y por eso participan en reacciones químicas
+        semejantes.</p>
+        <p>La planta “no los distingue”: el trazador sigue el mismo camino que el nitrógeno
+        común. Lo que permite seguirle el rastro es la <b>diferencia de masa</b>, que se mide
+        en las muestras de planta y de suelo. El <sup>15</sup>N es estable: no emite
+        radiación.</p>`,
+      dato: 'Un trazador no tiene por qué ser radiactivo.',
+    },
+    {
+      titulo: 'Isótopos para leer el pasado',
+      texto: `<p>El último problema mide la razón <sup>129</sup>Xe/<sup>136</sup>Xe en
+        minerales para estudiar la evolución de la Tierra.</p>
+        <p>Los dos son xenón (Z = 54), así que tienen las mismas propiedades químicas y la
+        misma cantidad de electrones si son neutros. Se diferencian en los neutrones: 75 y
+        82 respectivamente, y por lo tanto en la masa del núcleo.</p>`,
+    },
+  ],
 };
 
 export const tieneTeoria = (id) => Array.isArray(TEORIA[id]) && TEORIA[id].length > 0;

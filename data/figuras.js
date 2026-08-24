@@ -436,6 +436,175 @@ export const FIGURAS = {
     Mismo Z (mismo elemento) · distinto N · distinto A
   </text>
 </svg>`,
+
+  // ── Nivel 13: masa atómica promedio ─────────────────────────────
+  'masa-promedio': `
+<svg viewBox="0 0 320 175" role="img" aria-label="La masa atómica promedio es un promedio ponderado según la abundancia">
+  <g ${base} font-size="9" text-anchor="middle">
+    <rect x="22" y="40" width="118" height="52" rx="8" fill="var(--accent)" opacity=".28" stroke="var(--accent)"/>
+    <text x="81" y="60" font-size="13" font-weight="700">³⁵Cl</text>
+    <text x="81" y="76">34,96885 u</text>
+    <text x="81" y="106" font-size="14" font-weight="700" fill="var(--accent)">75,78 %</text>
+
+    <rect x="180" y="52" width="86" height="40" rx="8" fill="var(--accent-2)" opacity=".28" stroke="var(--accent-2)"/>
+    <text x="223" y="68" font-size="13" font-weight="700">³⁷Cl</text>
+    <text x="223" y="82">36,96590 u</text>
+    <text x="223" y="106" font-size="14" font-weight="700" fill="var(--accent-2)">24,22 %</text>
+  </g>
+  <path d="M20 122 L300 122" stroke="var(--line)" stroke-width="2"/>
+  <polygon points="152,122 144,136 160,136" fill="var(--txt-dim)"/>
+  <text x="160" y="158" ${base} font-size="12" font-weight="700" text-anchor="middle">
+    M̄ = 35,45 u
+  </text>
+  <text x="160" y="172" ${base} font-size="8.5" fill="var(--txt-dim)" text-anchor="middle">
+    El promedio se corre hacia el isótopo más abundante
+  </text>
+  <text x="160" y="24" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    El tamaño de cada caja representa su peso en el promedio
+  </text>
+</svg>`,
+
+  // ── Nivel 14 y 18: desintegración ───────────────────────────────
+  'desintegracion-beta': `
+<svg viewBox="0 0 320 160" role="img" aria-label="Desintegración beta del cobalto-60 en níquel-60">
+  <g ${base} font-size="9" text-anchor="middle">
+    <circle cx="55" cy="60" r="30" fill="var(--bad)" opacity=".25" stroke="var(--bad)"/>
+    <text x="55" y="56" font-size="14" font-weight="700">⁶⁰₂₇Co</text>
+    <text x="55" y="72" font-size="8">27 p⁺ · 33 n⁰</text>
+    <text x="55" y="106" fill="var(--bad)">núcleo inestable</text>
+
+    <path d="M95 60 L145 60" stroke="var(--accent-2)" stroke-width="2"/>
+    <text x="120" y="50" fill="var(--accent-2)">emite β⁻</text>
+
+    <circle cx="200" cy="60" r="30" fill="var(--accent)" opacity=".25" stroke="var(--accent)"/>
+    <text x="200" y="56" font-size="14" font-weight="700">⁶⁰₂₈Ni</text>
+    <text x="200" y="72" font-size="8">28 p⁺ · 32 n⁰</text>
+    <text x="200" y="106" fill="var(--accent)">+ radiación γ</text>
+
+    <path d="M240 60 L280 60" stroke="var(--accent)" stroke-width="2" stroke-dasharray="3 3"/>
+    <text x="292" y="64" font-size="16" fill="var(--accent)">γ</text>
+  </g>
+  <text x="160" y="132" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    Un neutrón se transforma en protón: Z sube de 27 a 28
+  </text>
+  <text x="160" y="148" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    A sigue valiendo 60 → Co y Ni son isóbaros
+  </text>
+</svg>`,
+
+  // ── Nivel 15: trazadores e irradiación ──────────────────────────
+  trazador: `
+<svg viewBox="0 0 320 170" role="img" aria-label="Un trazador isotópico permite seguir el recorrido del fertilizante">
+  <rect x="10" y="110" width="300" height="46" rx="6" fill="#4a3a26"/>
+  <text x="26" y="150" ${base} font-size="9" fill="#c8b48f">suelo</text>
+  <g stroke="var(--accent)" stroke-width="3" fill="none">
+    <path d="M160 110 L160 62"/>
+    <path d="M160 78 L136 62"/><path d="M160 78 L184 62"/>
+  </g>
+  <ellipse cx="132" cy="56" rx="16" ry="9" fill="var(--accent)" transform="rotate(-20 132 56)"/>
+  <ellipse cx="188" cy="56" rx="16" ry="9" fill="var(--accent)" transform="rotate(20 188 56)"/>
+  <g stroke="var(--accent-2)" stroke-width="2" stroke-dasharray="4 3" fill="none">
+    <path d="M60 132 L150 122"/>
+    <path d="M158 108 L158 66"/>
+  </g>
+  <g fill="var(--accent-2)">
+    <circle cx="60" cy="132" r="7"/><circle cx="120" cy="126" r="6"/>
+    <circle cx="158" cy="96" r="6"/><circle cx="158" cy="70" r="6"/>
+  </g>
+  <g ${base} font-size="9">
+    <text x="30" y="40" font-weight="700" fill="var(--accent-2)">¹⁵N o ³²P</text>
+    <text x="30" y="54" fill="var(--txt-dim)">fertilizante</text>
+    <text x="30" y="66" fill="var(--txt-dim)">marcado</text>
+    <text x="212" y="76" fill="var(--txt-dim)">se mide cuánto</text>
+    <text x="212" y="88" fill="var(--txt-dim)">llegó a la planta,</text>
+    <text x="212" y="100" fill="var(--txt-dim)">cuánto quedó</text>
+    <text x="212" y="112" fill="var(--txt-dim)">y cuánto se perdió</text>
+  </g>
+</svg>`,
+
+  'irradiado-vs-contaminado': `
+<svg viewBox="0 0 320 165" role="img" aria-label="Diferencia entre un alimento irradiado y uno contaminado con material radiactivo">
+  <g ${base} font-size="9" text-anchor="middle">
+    <rect x="14" y="26" width="136" height="104" rx="10" fill="var(--bg-soft)" stroke="var(--ok)"/>
+    <text x="82" y="46" font-weight="700" fill="var(--ok)">IRRADIADO</text>
+    <rect x="24" y="58" width="20" height="34" rx="3" fill="var(--accent-2)"/>
+    <text x="34" y="104" font-size="8" fill="var(--txt-dim)">fuente</text>
+    <g stroke="var(--accent-2)" stroke-width="2" stroke-dasharray="3 3">
+      <line x1="48" y1="66" x2="96" y2="66"/><line x1="48" y1="78" x2="96" y2="78"/>
+    </g>
+    <circle cx="118" cy="72" r="18" fill="var(--accent)" opacity=".5"/>
+    <text x="82" y="122" font-size="8" fill="var(--txt-dim)">recibió energía · no queda radiactivo</text>
+
+    <rect x="170" y="26" width="136" height="104" rx="10" fill="var(--bg-soft)" stroke="var(--bad)"/>
+    <text x="238" y="46" font-weight="700" fill="var(--bad)">CONTAMINADO</text>
+    <circle cx="238" cy="76" r="24" fill="var(--bad)" opacity=".35"/>
+    <g fill="var(--bad)">
+      <circle cx="230" cy="68" r="4"/><circle cx="246" cy="74" r="4"/><circle cx="236" cy="86" r="4"/>
+    </g>
+    <text x="238" y="122" font-size="8" fill="var(--txt-dim)">tiene radionucleidos adentro</text>
+  </g>
+  <text x="160" y="152" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    Confundirlos es un error científico, no un matiz
+  </text>
+</svg>`,
+
+  // ── Nivel 16: receta para contar partículas ─────────────────────
+  'receta-particulas': `
+<svg viewBox="0 0 320 185" role="img" aria-label="Pasos para contar protones, neutrones y electrones">
+  <g ${base} font-size="10">
+    <rect x="14" y="14" width="292" height="34" rx="8" fill="var(--card-hi)"/>
+    <text x="26" y="30" font-weight="700" fill="var(--accent)">1 · Protones</text>
+    <text x="26" y="42" fill="var(--txt-dim)">Son Z, el número de abajo. Nunca cambian.</text>
+
+    <rect x="14" y="54" width="292" height="34" rx="8" fill="var(--card-hi)"/>
+    <text x="26" y="70" font-weight="700" fill="var(--accent-2)">2 · Neutrones</text>
+    <text x="26" y="82" fill="var(--txt-dim)">N = A − Z (el de arriba menos el de abajo).</text>
+
+    <rect x="14" y="94" width="292" height="34" rx="8" fill="var(--card-hi)"/>
+    <text x="26" y="110" font-weight="700" fill="var(--bad)">3 · Electrones</text>
+    <text x="26" y="122" fill="var(--txt-dim)">e⁻ = Z − carga. Sin carga, e⁻ = Z.</text>
+  </g>
+  <text x="160" y="150" ${base} font-size="10" font-weight="700" text-anchor="middle">
+    ³¹₁₅P³⁻ → 15 p⁺ · 16 n⁰ · 18 e⁻
+  </text>
+  <text x="160" y="170" ${base} font-size="8.5" fill="var(--txt-dim)" text-anchor="middle">
+    Cuidado con el signo: restar un −3 es sumar 3
+  </text>
+</svg>`,
+
+  // ── Nivel 17: clasificar núclidos ───────────────────────────────
+  'clasificar-nuclidos': `
+<svg viewBox="0 0 320 175" role="img" aria-label="Cómo decidir si dos núclidos son isótopos, isóbaros o isótonos">
+  <g ${base} font-size="9" text-anchor="middle">
+    <rect x="96" y="10" width="128" height="26" rx="8" fill="var(--card-hi)"/>
+    <text x="160" y="27" font-weight="700">¿Qué comparten?</text>
+
+    <line x1="160" y1="36" x2="60" y2="60" stroke="var(--line)"/>
+    <line x1="160" y1="36" x2="160" y2="60" stroke="var(--line)"/>
+    <line x1="160" y1="36" x2="262" y2="60" stroke="var(--line)"/>
+
+    <rect x="12" y="62" width="96" height="56" rx="8" fill="var(--bg-soft)" stroke="var(--accent)"/>
+    <text x="60" y="80" font-weight="700" fill="var(--accent)">mismo Z</text>
+    <text x="60" y="96">ISÓTOPOS</text>
+    <text x="60" y="110" font-size="8" fill="var(--txt-dim)">mismo elemento</text>
+
+    <rect x="112" y="62" width="96" height="56" rx="8" fill="var(--bg-soft)" stroke="var(--accent-2)"/>
+    <text x="160" y="80" font-weight="700" fill="var(--accent-2)">mismo A</text>
+    <text x="160" y="96">ISÓBAROS</text>
+    <text x="160" y="110" font-size="8" fill="var(--txt-dim)">distinto elemento</text>
+
+    <rect x="212" y="62" width="96" height="56" rx="8" fill="var(--bg-soft)" stroke="var(--bad)"/>
+    <text x="260" y="80" font-weight="700" fill="var(--bad)">mismo N</text>
+    <text x="260" y="96">ISÓTONOS</text>
+    <text x="260" y="110" font-size="8" fill="var(--txt-dim)">distinto elemento</text>
+  </g>
+  <text x="160" y="140" ${base} font-size="9" fill="var(--txt-dim)" text-anchor="middle">
+    Truco: calculá siempre N = A − Z antes de comparar.
+  </text>
+  <text x="160" y="160" ${base} font-size="9" text-anchor="middle">
+    ¹³₅B y ¹⁴₆C tienen N = 8 los dos → isótonos
+  </text>
+</svg>`,
 };
 
 // Devuelve el SVG o una cadena vacía si el nombre no existe.
