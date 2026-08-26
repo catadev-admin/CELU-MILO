@@ -233,7 +233,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'De esas evidencias Rutherford dedujo que en el núcleo se concentra cerca del…',
+        q: 'Del experimento de la <b>lámina de oro</b>, Rutherford dedujo que en el núcleo se concentra cerca del…',
         options: [
           '99,95 % de la masa atómica',
           '50 % de la masa atómica',
@@ -768,7 +768,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'En ese mismo diagrama del flúor, el electrón número 6 ocupa el orbital 2p<sub>y</sub>. Sus números cuánticos son…',
+        q: 'En el diagrama de orbitales del <b>flúor</b> (Z = 9), el electrón número 6 ocupa el orbital 2p<sub>y</sub>. Sus números cuánticos son…',
         options: [
           'n = 2, l = 1, m = 0, s = +1/2',
           'n = 2, l = 1, m = −1, s = +1/2',
@@ -1467,7 +1467,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'En esa misma lista, ¿qué átomos tienen el <b>mismo número de neutrones</b>?',
+        q: 'De esta lista: <sup>12</sup><sub>7</sub>N, <sup>13</sup><sub>5</sub>B, <sup>13</sup><sub>7</sub>N, <sup>14</sup><sub>6</sub>C, <sup>14</sup><sub>7</sub>N y <sup>17</sup><sub>9</sub>F, ¿qué átomos tienen el <b>mismo número de neutrones</b>?',
         options: [
           '<sup>13</sup><sub>5</sub>B, <sup>14</sup><sub>6</sub>C y <sup>17</sup><sub>9</sub>F, con 8 neutrones cada uno',
           '<sup>12</sup><sub>7</sub>N y <sup>13</sup><sub>7</sub>N',
@@ -1479,7 +1479,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'De la misma lista, ¿cuál es un par de <b>isóbaros</b> (igual número másico, distinto elemento)?',
+        q: 'De esta lista: <sup>12</sup><sub>7</sub>N, <sup>13</sup><sub>5</sub>B, <sup>13</sup><sub>7</sub>N, <sup>14</sup><sub>6</sub>C, <sup>14</sup><sub>7</sub>N y <sup>17</sup><sub>9</sub>F, ¿cuál es un par de <b>isóbaros</b> (igual número másico, distinto elemento)?',
         options: [
           '<sup>13</sup><sub>5</sub>B y <sup>13</sup><sub>7</sub>N',
           '<sup>12</sup><sub>7</sub>N y <sup>13</sup><sub>7</sub>N',
@@ -1603,7 +1603,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El níquel-60 queda en estado excitado y libera ese exceso de energía en forma de…',
+        q: 'Cuando el cobalto-60 emite una partícula β<sup>−</sup>, el <b>níquel-60</b> que se forma queda en estado excitado y libera ese exceso de energía en forma de…',
         options: [
           'Radiación gamma',
           'Partículas alfa',
@@ -1633,7 +1633,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'Entonces, ¿qué permite seguir el destino del fertilizante marcado con <sup>15</sup>N?',
+        q: '¿Qué permite seguir el destino de un fertilizante marcado con <sup>15</sup>N dentro del cultivo y del suelo?',
         options: [
           'La diferencia de masa entre los isótopos, que puede medirse en las muestras de planta y suelo',
           'La radiación que emite el <sup>15</sup>N',
@@ -1906,14 +1906,14 @@ export const LEVELS = [
       },
       {
         type: 'num',
-        q: 'Para esa misma configuración (…3s<sup>2</sup> 3p<sup>2</sup>), ¿cuántos electrones tiene en la <b>última capa</b>?',
+        q: 'Un átomo con configuración 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>2</sup>, ¿cuántos electrones tiene en la <b>última capa</b>?',
         answer: 4,
         unit: 'e⁻',
         why: '2 + 2 = 4 electrones en el nivel 3, así que pertenece al grupo IV A.',
       },
       {
         type: 'num',
-        q: 'Y en esa configuración, ¿cuántos electrones quedan <b>desapareados</b>?',
+        q: 'En la configuración 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>2</sup>, ¿cuántos electrones quedan <b>desapareados</b>?',
         answer: 2,
         unit: 'e⁻',
         why: 'Por la regla de Hund, los dos electrones 3p ocupan orbitales distintos con espines paralelos.',
@@ -2534,7 +2534,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'Para ese mismo elemento, ¿cuál es la configuración electrónica de <b>X<sup>2−</sup></b>?',
+        q: 'Un átomo <sup>32</sup>X tiene 16 neutrones en su núcleo. ¿Cuál es la configuración electrónica del ion <b>X<sup>2−</sup></b>?',
         options: [
           '1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>6</sup>',
           '1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>4</sup>',
@@ -2542,7 +2542,7 @@ export const LEVELS = [
           '1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>2</sup> 3p<sup>2</sup>',
         ],
         answer: 0,
-        why: 'El azufre neutro tiene 16 electrones (…3s² 3p⁴); al ganar 2 llega a 18 y completa el octeto, igual que el argón.',
+        why: 'Z = A − N = 32 − 16 = 16: es el azufre, con 16 electrones (…3s² 3p⁴). Al ganar 2 llega a 18 y completa el octeto, igual que el argón.',
       },
       {
         type: 'num',
@@ -2685,7 +2685,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'De esos tres elementos, ¿cuál es el de mayor electronegatividad y cuál el metálico?',
+        q: 'Dadas las configuraciones I) 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>5</sup>, II) 1s<sup>2</sup> y III) 1s<sup>2</sup> 2s<sup>2</sup> 2p<sup>6</sup> 3s<sup>1</sup>, ¿cuál de esos elementos es el de mayor electronegatividad y cuál es el metálico?',
         options: [
           'El flúor es el más electronegativo y el sodio es el metálico',
           'El helio es el más electronegativo y el flúor el metálico',
