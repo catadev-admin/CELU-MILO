@@ -914,7 +914,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'Según el apunte, ¿qué determina cada número?',
+        q: 'Entre el número atómico (<b>Z</b>) y el número másico (<b>A</b>), ¿qué determina cada uno?',
         options: [
           'Z determina las propiedades químicas y A las propiedades físicas',
           'Z determina las propiedades físicas y A las químicas',
@@ -1498,7 +1498,7 @@ export const LEVELS = [
       },
       {
         type: 'num',
-        q: 'El <b>cesio-137</b> (Z = 55) es otro núclido de uso agronómico. ¿Cuántos <b>neutrones</b> tiene?',
+        q: 'El <b>cesio-137</b> (Z = 55) también se usa en estudios agronómicos. ¿Cuántos <b>neutrones</b> tiene?',
         answer: 82,
         unit: 'n⁰',
         why: 'N = 137 − 55 = 82 neutrones.',
@@ -1519,7 +1519,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El núclido de <b>hafnio</b> (Z = 72) que contiene 107 neutrones se escribe…',
+        q: '¿Cómo se escribe el átomo de <b>hafnio</b> (Z = 72) que contiene 107 neutrones?',
         options: [
           '<sup>179</sup><sub>72</sub>Hf',
           '<sup>107</sup><sub>72</sub>Hf',
@@ -1531,7 +1531,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El núclido de <b>silicio</b> (Z = 14) que tiene el mismo número de protones y de neutrones es…',
+        q: '¿Cuál es el átomo de <b>silicio</b> (Z = 14) que tiene el mismo número de protones que de neutrones?',
         options: [
           '<sup>28</sup><sub>14</sub>Si',
           '<sup>14</sup><sub>14</sub>Si',
@@ -1543,7 +1543,7 @@ export const LEVELS = [
       },
       {
         type: 'num',
-        q: 'Completá la tabla: el <sup>52</sup>Cr tiene número atómico 24. ¿Cuántos <b>neutrones</b> tiene?',
+        q: 'El <sup>52</sup>Cr tiene número atómico 24. ¿Cuántos <b>neutrones</b> tiene?',
         answer: 28,
         unit: 'n⁰',
         why: 'N = 52 − 24 = 28 neutrones, y por ser neutro tiene 24 electrones.',
@@ -1572,7 +1572,7 @@ export const LEVELS = [
       },
       {
         type: 'num',
-        q: 'En la desintegración del cobalto-60 se forma <b>níquel-60</b> (Z = 28). ¿Cuántos <b>neutrones</b> tiene ese núclido?',
+        q: 'En la desintegración del cobalto-60 se forma <b>níquel-60</b> (Z = 28). ¿Cuántos <b>neutrones</b> tiene ese átomo de níquel?',
         answer: 32,
         unit: 'n⁰',
         why: 'N = 60 − 28 = 32 neutrones, frente a los 33 del cobalto-60.',
@@ -1956,7 +1956,7 @@ export const LEVELS = [
         type: 'mc',
         q: '¿Por qué se consideró tan estable la configuración de los gases nobles?',
         options: [
-          'Porque no presentan compuestos y prácticamente no reaccionan, con 8 electrones en su CEE',
+          'Porque prácticamente no reaccionan ni forman compuestos: ya tienen 8 electrones en su última capa',
           'Porque son los más livianos',
           'Porque tienen el radio atómico más grande',
           'Porque son radiactivos',
@@ -2087,7 +2087,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'Un elemento cuyo electrón diferenciador entra en un orbital <b>d</b> pertenece al bloque…',
+        q: 'El <b>electrón diferenciador</b> es el último electrón que se agrega al armar la configuración. Si el de un elemento entra en un orbital <b>d</b>, ese elemento pertenece al bloque…',
         options: ['d', 's', 'p', 'f'],
         answer: 0,
         why: 'La tabla se divide en bloques según el subnivel de la CEE: s (I A y II A), p (III A a VIII A), d (transición) y f (transición interna).',
@@ -2096,7 +2096,7 @@ export const LEVELS = [
         type: 'mc',
         q: 'Los <b>transactínidos</b> (elementos 104 al 121) se caracterizan porque…',
         options: [
-          'Todos son radiactivos y sus isótopos tienen períodos de semidesintegración muy cortos',
+          'Todos son radiactivos y sus isótopos duran muy poco: su período de semidesintegración (vida media) es muy corto',
           'Son los más abundantes en la naturaleza',
           'Pertenecen al bloque s',
           'Son gases nobles',
@@ -2106,7 +2106,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'En los grupos VIII B, períodos 4, 5 y 6, hay tres <b>analogías horizontales</b>. Una de ellas es…',
+        q: 'En la tabla, los elementos parecidos suelen estar uno debajo del otro (mismo grupo). En el grupo VIII B hay una excepción: tríos de elementos <b>vecinos dentro de un mismo período</b> que se parecen mucho entre sí (las llamadas <b>analogías horizontales</b>). ¿Cuál de estos tríos es uno de ellos?',
         options: [
           'Fe – Co – Ni',
           'Li – Na – K',
@@ -2114,7 +2114,7 @@ export const LEVELS = [
           'He – Ne – Ar',
         ],
         answer: 0,
-        why: 'Las otras dos son Ru–Rh–Pd y Os–Ir–Pt. Tienen igual cantidad de electrones periféricos y propiedades muy semejantes.',
+        why: 'Fe, Co y Ni son vecinos en el período 4 y tienen la misma cantidad de electrones externos, así que se parecen entre sí. Los otros tres tríos son <b>verticales</b> (un grupo cada uno): Li–Na–K son alcalinos, F–Cl–Br halógenos y He–Ne–Ar gases nobles. Las otras dos analogías horizontales son Ru–Rh–Pd y Os–Ir–Pt.',
       },
     ],
   },
@@ -2289,7 +2289,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El <b>magnesio</b> tiene una función estructural muy concreta:',
+        q: '¿Cuál es la función estructural más importante del <b>magnesio</b> en la planta?',
         options: [
           'Es el átomo central de la molécula de clorofila',
           'Forma la pared celular',
@@ -2589,7 +2589,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El <b>bromo</b> (Z = 35), con CEE 4s<sup>2</sup> 4p<sup>5</sup>, es…',
+        q: 'El <b>bromo</b> (Z = 35) termina su configuración en 4s<sup>2</sup> 4p<sup>5</sup>. Entonces es…',
         options: [
           'Un no metal del grupo VII A, período 4',
           'Un metal del grupo VII B, período 4',
@@ -2637,7 +2637,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El <b>titanio</b> y el <b>itrio</b> son elementos de transición. Eso significa que su electrón diferenciador está en…',
+        q: 'El <b>titanio</b> y el <b>itrio</b> son elementos de transición. Eso significa que su electrón diferenciador (el último que se agrega) está en…',
         options: [
           'Un orbital d, y pertenecen al grupo B',
           'Un orbital p',
@@ -2661,7 +2661,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'Un electrón diferenciador con <b>n = 3, l = 1</b> ubica al elemento en…',
+        q: 'El último electrón que se agrega a un elemento (su <b>electrón diferenciador</b>) tiene <b>n = 3, l = 1</b>. Ese elemento está en…',
         options: [
           'El período 3, bloque p',
           'El período 1, bloque d',
@@ -2750,7 +2750,7 @@ export const LEVELS = [
       },
       {
         type: 'vf',
-        q: 'Un elemento cuyo electrón diferenciador tiene n = 4 y l = 2 pertenece al cuarto período.',
+        q: 'Si el último electrón que se agrega (el electrón diferenciador) tiene n = 4 y l = 2, el elemento pertenece al cuarto período.',
         answer: false,
         why: 'l = 2 es un subnivel d, y el subnivel 4d se llena recién en el quinto período: su CEE llega a 5s. El período lo marca el mayor número cuántico principal de la CEE.',
       },
@@ -2762,7 +2762,7 @@ export const LEVELS = [
       },
       {
         type: 'mc',
-        q: 'El <b>cromo</b> se corresponde con la característica…',
+        q: '¿Cuál de estas características le corresponde al <b>cromo</b>?',
         options: [
           'Es un elemento de transición',
           'Es el elemento más electronegativo',
