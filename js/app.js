@@ -56,7 +56,8 @@ function renderHome() {
 const nivelesDe = (tema) =>
   LEVELS.filter((l) => l.id >= tema.desde && l.id <= tema.hasta);
 
-let temaActual = TEMAS[0];
+// Arranca en la primera unidad disponible: las bloqueadas no se pueden abrir.
+let temaActual = TEMAS.find((t) => !t.bloqueada) || TEMAS[0];
 
 function renderUnits() {
   const cont = $('#units');
@@ -70,30 +71,35 @@ function renderUnits() {
     const completados = niveles.filter((l) => (progress[l.id]?.stars || 0) > 0).length;
 
     const btn = document.createElement('button');
-    btn.className = 'unit';
+    btn.className = tema.bloqueada ? 'unit unit--locked' : 'unit';
     btn.style.setProperty('--lvl', tema.color);
+    btn.disabled = !!tema.bloqueada;
+    if (tema.bloqueada) btn.setAttribute('aria-label', `${tema.titulo}, bloqueada`);
     btn.innerHTML = `
       <div class="unit__top">
-        <div class="unit__icon" aria-hidden="true">${tema.icon}</div>
+        <div class="unit__icon" aria-hidden="true">${tema.bloqueada ? '🔒' : tema.icon}</div>
         <div class="unit__body">
           <div class="unit__name">${tema.titulo}</div>
           <div class="unit__sub">${tema.subtitulo}</div>
         </div>
       </div>
       <div class="unit__meta">
-        <span>${niveles.length} niveles · ${completados} jugados</span>
+        <span>${tema.bloqueada ? 'Bloqueada' : `${niveles.length} niveles · ${completados} jugados`}</span>
         <span class="unit__stars">${estrellas} / ${maximo} ⭐</span>
       </div>
       <div class="bar bar--slim"><div class="bar__fill" style="width:${(estrellas / maximo) * 100}%"></div></div>`;
-    btn.addEventListener('click', () => {
-      sfx.tap();
-      abrirUnidad(tema);
-    });
+    if (!tema.bloqueada) {
+      btn.addEventListener('click', () => {
+        sfx.tap();
+        abrirUnidad(tema);
+      });
+    }
     cont.appendChild(btn);
   });
 }
 
 function abrirUnidad(tema) {
+  if (tema.bloqueada) return;
   temaActual = tema;
   renderMap();
   show('map');

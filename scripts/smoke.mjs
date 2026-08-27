@@ -124,15 +124,33 @@ async function main() {
     const carpetas = await evaluate('document.querySelectorAll(".unit").length');
     check('el inicio lleva a las carpetas de unidades', carpetas === temas,
       `${carpetas} de ${temas}`);
+
+    // Las unidades bloqueadas se ven pero no se abren.
+    const bloqueadas = await evaluate(
+      `(async()=>{const m=await import('/data/levels.js');return m.TEMAS.filter(t=>t.bloqueada).length})()`, true);
+    const deshabilitadas = await evaluate(
+      'document.querySelectorAll(".unit[disabled]").length');
+    check('las unidades bloqueadas no se pueden abrir', deshabilitadas === bloqueadas,
+      `${deshabilitadas} de ${bloqueadas}`);
     await shot('2-unidades');
 
-    // ── niveles de la unidad 1 ──
-    const esperados = await evaluate(`(async()=>{
+    // ── niveles de la primera unidad disponible ──
+    // (todo lo que sigue usa esta unidad, no necesariamente la primera de la lista)
+    const unidad = await evaluate(`(async()=>{
       const m = await import('/data/levels.js');
-      const t = m.TEMAS[0];
-      return m.LEVELS.filter((l) => l.id >= t.desde && l.id <= t.hasta).length;
+      const i = m.TEMAS.findIndex((t) => !t.bloqueada);
+      const t = m.TEMAS[i];
+      const niveles = m.LEVELS.filter((l) => l.id >= t.desde && l.id <= t.hasta);
+      return {
+        indice: i,
+        cantidad: niveles.length,
+        primerId: niveles[0].id,
+        primerGlobal: m.LEVELS.indexOf(niveles[0]),
+        segundoTitulo: 'Nivel ' + niveles[1].id,
+      };
     })()`, true);
-    await evaluate('document.querySelectorAll(".unit")[0].click()');
+    const esperados = unidad.cantidad;
+    await evaluate(`document.querySelectorAll(".unit:not([disabled])")[0].click()`);
     await sleep(400);
     const levels = await evaluate('document.querySelectorAll(".level").length');
     check('la carpeta abre los niveles de esa unidad', levels === esperados,
@@ -143,8 +161,8 @@ async function main() {
 
     // ── teoría del nivel ──
     const pasosTeoria = await evaluate(
-      `(async()=>{const m=await import('/data/teoria.js');return (m.TEORIA[1]||[]).length})()`, true);
-    check('el nivel 1 tiene teoría cargada', pasosTeoria > 0, `${pasosTeoria} pasos`);
+      `(async()=>{const m=await import('/data/teoria.js');return (m.TEORIA[${unidad.primerId}]||[]).length})()`, true);
+    check(`el nivel ${unidad.primerId} tiene teoría cargada`, pasosTeoria > 0, `${pasosTeoria} pasos`);
 
     await evaluate('document.querySelectorAll(".level__theory")[0].click()');
     await sleep(300);
@@ -182,7 +200,7 @@ async function main() {
     await evaluate('document.querySelector("#btn-quit").click()');
     await sleep(300);
 
-    // ── jugar el nivel 1 respondiendo todo bien ──
+    // ── jugar el primer nivel de la unidad respondiendo todo bien ──
     await evaluate('document.querySelectorAll(".level__play")[0].click()');
     await sleep(300);
     check('arranca con 3 vidas', await evaluate('document.querySelectorAll("#lives .off").length === 0'));
@@ -228,7 +246,7 @@ async function main() {
       }
     };
 
-    await jugarNivel(0, true);
+    await jugarNivel(unidad.primerGlobal, true);
 
     check('no perdió vidas respondiendo bien',
       await evaluate('document.querySelectorAll("#lives .off").length === 0'));
@@ -246,20 +264,23 @@ async function main() {
     // ── desbloqueo y persistencia ──
     check('guarda el progreso en localStorage', await evaluate(`(async()=>{
       const s = await import('/js/storage.js');
-      return !!JSON.parse(localStorage.getItem(s.KEY) || '{}')['1'];
+      return !!JSON.parse(localStorage.getItem(s.KEY) || '{}')['${unidad.primerId}'];
     })()`, true));
     await evaluate('document.querySelector("#btn-result-main").click()');
     await sleep(300);
-    check('avanza al nivel 2',
-      (await evaluate('document.querySelector("#play-level").textContent')).includes('Nivel 2'));
+    check(`avanza al ${unidad.segundoTitulo.toLowerCase()}`,
+      (await evaluate('document.querySelector("#play-level").textContent'))
+        .includes(unidad.segundoTitulo));
 
     await cdp.send('Page.navigate', { url: base }, S);
     await sleep(700);
     await evaluate('document.querySelector("#btn-play").click()');
     await sleep(400);
     check('la carpeta muestra el progreso tras recargar',
-      (await evaluate('document.querySelector(".unit__stars").textContent')).startsWith('3'));
-    await evaluate('document.querySelectorAll(".unit")[0].click()');
+      (await evaluate(
+        'document.querySelectorAll(".unit:not([disabled])")[0].querySelector(".unit__stars").textContent'
+      )).startsWith('3'));
+    await evaluate('document.querySelectorAll(".unit:not([disabled])")[0].click()');
     await sleep(400);
     check('el nivel jugado conserva sus estrellas',
       await evaluate('document.querySelectorAll(".level__play")[0].querySelectorAll(".on").length === 3'));
@@ -278,15 +299,19 @@ async function main() {
       m.LEVELS.forEach((l) => { progreso[l.id] = { stars: 3, best: 100 }; });
       localStorage.setItem(s.KEY, JSON.stringify(progreso));
       // el nivel con más preguntas de cálculo, ubicado dentro de su unidad
+      const abiertos = m.TEMAS.filter((t) => !t.bloqueada);
+      const jugable = (l) => abiertos.some((t) => l.id >= t.desde && l.id <= t.hasta);
       let mejor = -1, max = 0;
       m.LEVELS.forEach((l, i) => {
+        if (!jugable(l)) return;
         const n = l.questions.filter((q) => q.type === 'num').length;
         if (n > max) { max = n; mejor = i; }
       });
       if (mejor < 0) return null;
       const nivel = m.LEVELS[mejor];
-      const tema = m.TEMAS.findIndex((t) => nivel.id >= t.desde && nivel.id <= t.hasta);
-      const dentro = m.LEVELS.filter((l) => l.id >= m.TEMAS[tema].desde && l.id <= nivel.id).length - 1;
+      const t = abiertos.find((x) => nivel.id >= x.desde && nivel.id <= x.hasta);
+      const tema = abiertos.indexOf(t);   // índice entre las carpetas abiertas
+      const dentro = m.LEVELS.filter((l) => l.id >= t.desde && l.id <= nivel.id).length - 1;
       return { global: mejor, tema, dentro };
     })()`, true);
 
@@ -297,7 +322,7 @@ async function main() {
       await sleep(700);
       await evaluate('document.querySelector("#btn-play").click()');
       await sleep(400);
-      await evaluate(`document.querySelectorAll('.unit')[${nivelNum.tema}].click()`);
+      await evaluate(`document.querySelectorAll('.unit:not([disabled])')[${nivelNum.tema}].click()`);
       await sleep(400);
       await evaluate(`document.querySelectorAll('.level__play')[${nivelNum.dentro}].click()`);
       await sleep(300);
@@ -340,7 +365,7 @@ async function main() {
     await sleep(700);
     await evaluate('document.querySelector("#btn-play").click()');
     await sleep(400);
-    await evaluate('document.querySelectorAll(".unit")[0].click()');
+    await evaluate('document.querySelectorAll(".unit:not([disabled])")[0].click()');
     await sleep(400);
     const primeras = new Set();
     for (let i = 0; i < 6; i++) {

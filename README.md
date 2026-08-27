@@ -11,7 +11,9 @@ químicos).
 ## Cómo se juega
 
 1. **Carpetas por unidad**: entrás a la unidad que estés cursando y elegís cualquiera de
-   sus niveles, en el orden que quieras. No hay niveles bloqueados.
+   sus niveles, en el orden que quieras. Dentro de una unidad no hay niveles
+   bloqueados; una unidad entera sí puede estarlo (hoy lo está la unidad 1, que
+   aparece con candado).
 2. Cada nivel tiene un **repaso teórico** 📖 en pasos, con figuras y ejemplos
    resueltos, que se puede leer antes de jugar o después de un tropiezo.
 3. Dentro del nivel tenés **3 vidas** ❤️❤️❤️ y preguntas de opción múltiple,

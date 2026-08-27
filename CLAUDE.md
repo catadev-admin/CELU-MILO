@@ -84,6 +84,9 @@ Correr al menos `check` después de tocar contenido y `smoke` después de tocar 
 - Estrellas: 100 % → 3, ≥ 80 % → 2, ≥ 60 % → 1. Con menos de 60 % no se pasa.
 - **No hay niveles bloqueados**: se entra por carpetas (una por unidad) y desde ahí
   se juega cualquier nivel en el orden que se quiera.
+- Una **unidad** entera sí se puede bloquear: se le pone `bloqueada: true` a su
+  entrada en `TEMAS`. La carpeta sigue apareciendo, con candado y sin poder
+  abrirse. Hoy está así la unidad 1. Para habilitarla, borrar esa línea.
 - Las preguntas y las opciones se mezclan en cada partida.
 
 ## Convenciones

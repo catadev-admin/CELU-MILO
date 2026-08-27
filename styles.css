@@ -185,6 +185,17 @@ sup, sub { font-size: 0.72em; line-height: 0; }
   transition: transform .08s ease;
 }
 .unit:active { transform: scale(.98); }
+
+/* Unidad bloqueada: se ve en la lista, pero no se puede abrir. */
+.unit--locked {
+  border-left-color: var(--line);
+  background: var(--bg-soft);
+  cursor: default;
+}
+.unit--locked:active { transform: none; }
+.unit--locked .unit__name,
+.unit--locked .unit__icon { color: var(--txt-dim); }
+.unit--locked .bar__fill { background: var(--line); }
 .unit__top { display: flex; align-items: center; gap: 14px; }
 .unit__icon {
   width: 54px; height: 54px;

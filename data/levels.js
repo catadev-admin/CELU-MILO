@@ -1797,10 +1797,10 @@ export const LEVELS = [
       },
       {
         type: 'num',
-        q: 'Los períodos 2 y 3 se llaman <b>cortos</b>. ¿Cuántos elementos tiene cada uno?',
+        q: 'El <b>período 3</b> es uno de los llamados períodos <b>cortos</b>. ¿Cuántos elementos tiene <b>ese</b> período?',
         answer: 8,
         unit: 'elementos',
-        why: 'El período 1 tiene 2 (H y He); los períodos 4 y 5 tienen 18 (medios) y el 6 tiene 32 (largo).',
+        why: 'Los períodos cortos son el 2 y el 3, con 8 elementos <b>cada uno</b>. El período 1 tiene 2 (H y He); los períodos 4 y 5 tienen 18 (medios) y el 6 tiene 32 (largo).',
       },
       {
         type: 'mc',
@@ -2805,6 +2805,9 @@ export const TEMAS = [
     color: '#7bc043',
     desde: 1,
     hasta: 18,
+    // Bloqueada: la carpeta se ve pero no se puede abrir.
+    // Para volver a habilitarla, borrar esta línea.
+    bloqueada: true,
   },
   {
     titulo: 'Unidad 2',
